@@ -6,4 +6,4 @@ Boxes
 
 | dependencies | status |
 | ------------ | ------ |
-[![Dependency Status](https://www.versioneye.com/user/projects/536c74bd14c1583234000004/badge.png)](https://www.versioneye.com/user/projects/536c74bd14c1583234000004)
+| composer.json | [![Dependency Status](https://www.versioneye.com/user/projects/536c74bd14c1583234000004/badge.png)](https://www.versioneye.com/user/projects/536c74bd14c1583234000004)
