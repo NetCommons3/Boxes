@@ -73,7 +73,7 @@ class Box extends BoxesAppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => array('Frame.id DESC'),
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',

@@ -10,6 +10,13 @@
  */
 ?>
 
+<?php if (Configure::read('Pages.isSetting')): ?>
+	<!-- TODO:padding-bottomを定義したい -->
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pluginList" ng-controller="PluginController" ng-click="showPluginList(<?php echo $box['Box']['id']; ?>)">
+		<?php echo __('put on the plugin'); ?>
+	</button>
+<?php endif; ?>
+
 <?php foreach ($box['Frame'] as $frame): ?>
 	<div class="frame frame-id-<?php echo $frame['id']; ?>">
 		<?php echo $this->requestAction('frames/frames/index/' . $frame['id'], array('return')); ?>
