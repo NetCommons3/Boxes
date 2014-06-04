@@ -12,9 +12,12 @@
 
 <?php if (Configure::read('Pages.isSetting')): ?>
 	<!-- TODO:padding-bottomを定義したい -->
-	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pluginList" ng-controller="PluginController" ng-click="showPluginList(<?php echo $box['Box']['id']; ?>)">
+	<p>
+	<button class="btn btn-primary  form-control" data-toggle="modal" data-target="#pluginList" ng-controller="PluginController" ng-click="showPluginList(<?php echo $box['Box']['id']; ?>)">
+		<span class="glyphicon glyphicon-pushpin"></span>
 		<?php echo __('put on the plugin'); ?>
 	</button>
+	</p>
 <?php endif; ?>
 
 <?php foreach ($box['Frame'] as $frame): ?>
