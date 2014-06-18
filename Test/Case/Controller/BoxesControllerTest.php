@@ -23,14 +23,18 @@ class BoxesControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'plugin.boxes.box',
-		//'plugin.boxes.container',
-		//'plugin.boxes.space',
-		//'plugin.boxes.room',
-		//'plugin.boxes.page',
-		//'plugin.boxes.boxes_page',
-		//'plugin.boxes.frame',
-		//'plugin.boxes.site_setting',
-		//'plugin.boxes.site_setting_value'
+		'plugin.boxes.container',
+		'plugin.boxes.space',
+		'plugin.boxes.room',
+		'plugin.boxes.page',
+		'plugin.boxes.boxes_page',
+		'plugin.boxes.frame',
+		'plugin.boxes.site_setting',
+		'plugin.boxes.site_setting_value',
+		'plugin.boxes.plugin',
+		'plugin.boxes.block',
+		'plugin.boxes.language',
+		'plugin.boxes.frames_language'
 	);
 
 /**
@@ -39,38 +43,18 @@ class BoxesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndex() {
+		$this->testAction('/boxes/boxes/index/1', array('return' => 'view'));
+		$this->assertTextContains('<div class="frame frame-id-', $this->view);
 	}
 
 /**
- * testView method
+ * testIndexNotFound method
  *
  * @return void
  */
-	public function testView() {
-	}
-
-/**
- * testAdd method
- *
- * @return void
- */
-	public function testAdd() {
-	}
-
-/**
- * testEdit method
- *
- * @return void
- */
-	public function testEdit() {
-	}
-
-/**
- * testDelete method
- *
- * @return void
- */
-	public function testDelete() {
+	public function testIndexNotFound() {
+		$this->setExpectedException('NotFoundException');
+		$this->testAction('/boxes/boxes/index');
 	}
 
 }
