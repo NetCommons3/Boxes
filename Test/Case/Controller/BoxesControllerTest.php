@@ -17,6 +17,13 @@ App::uses('BoxesController', 'Boxes.Controller');
 class BoxesControllerTest extends ControllerTestCase {
 
 /**
+ * AutoMock
+ *
+ * @var bool
+ */
+	public $autoMock = false;
+
+/**
  * Fixtures
  *
  * @var array
