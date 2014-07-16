@@ -31,7 +31,6 @@ class Box extends BoxesAppModel {
 	const TYPE_WITH_ROOM = '3';
 	const TYPE_WITH_PAGE = '4';
 
-
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
