@@ -23,6 +23,15 @@ App::uses('BoxesAppModel', 'Boxes.Model');
  */
 class Box extends BoxesAppModel {
 
+/**
+ * constant value
+ */
+	const TYPE_WITH_SITE = '1';
+	const TYPE_WITH_SPACE = '2';
+	const TYPE_WITH_ROOM = '3';
+	const TYPE_WITH_PAGE = '4';
+
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
