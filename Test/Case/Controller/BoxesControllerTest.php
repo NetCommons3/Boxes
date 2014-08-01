@@ -23,6 +23,7 @@ class BoxesControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'plugin.boxes.box',
+		'plugin.boxes.boxes_page',
 		'plugin.boxes.site_setting',
 		'plugin.boxes.site_setting_value',
 		'plugin.boxes.page',

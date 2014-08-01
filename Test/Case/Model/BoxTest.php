@@ -24,6 +24,7 @@ class BoxTest extends CakeTestCase {
 	public $fixtures = array(
 		'plugin.boxes.box',
 		'plugin.boxes.page',
+		'plugin.boxes.boxes_page',
 		'plugin.boxes.plugin',
 		'plugin.frames.frame',
 		'plugin.frames.language',
