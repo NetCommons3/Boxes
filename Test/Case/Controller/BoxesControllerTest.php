@@ -17,32 +17,36 @@ App::uses('BoxesController', 'Boxes.Controller');
 class BoxesControllerTest extends ControllerTestCase {
 
 /**
- * AutoMock
- *
- * @var bool
- */
-	public $autoMock = false;
-
-/**
  * Fixtures
  *
  * @var array
  */
 	public $fixtures = array(
 		'plugin.boxes.box',
-		'plugin.boxes.container',
-		'plugin.boxes.space',
-		'plugin.boxes.room',
-		'plugin.boxes.page',
-		'plugin.boxes.boxes_page',
-		'plugin.boxes.frame',
 		'plugin.boxes.site_setting',
 		'plugin.boxes.site_setting_value',
+		'plugin.boxes.page',
 		'plugin.boxes.plugin',
-		'plugin.boxes.block',
-		'plugin.boxes.language',
-		'plugin.boxes.frames_language'
+		'plugin.frames.frame',
+		'plugin.frames.language',
+		'plugin.frames.frames_language'
 	);
+
+/**
+ * Return setting mode text
+ *
+ * @param string $id Box ID
+ * @return void
+ */
+	private function __getSettingModeText($id) {
+		$text = '<button ' .
+			'class="btn btn-primary form-control" ' .
+			'data-toggle="modal" ' .
+			'data-target="#pluginList" ' .
+			'ng-controller="PluginController" ' .
+			'ng-click="showPluginList(' . $id . ')">';
+		return $text;
+	}
 
 /**
  * testIndex method
@@ -51,7 +55,10 @@ class BoxesControllerTest extends ControllerTestCase {
  */
 	public function testIndex() {
 		$this->testAction('/boxes/boxes/index/1', array('return' => 'view'));
-		$this->assertTextContains('<div class="frame frame-id-', $this->view);
+
+		$needle = $this->__getSettingModeText('1');
+		$this->assertTextNotContains($needle, $this->view);
+		$this->assertTextContains('<div class="box-site box-id-1">', $this->view);
 	}
 
 /**
@@ -62,6 +69,20 @@ class BoxesControllerTest extends ControllerTestCase {
 	public function testIndexNotFound() {
 		$this->setExpectedException('NotFoundException');
 		$this->testAction('/boxes/boxes/index');
+	}
+
+/**
+ * testIndexSettingMode method
+ *
+ * @return void
+ */
+	public function testIndexSettingMode() {
+		Configure::write('Pages.isSetting', true);
+		$this->testAction('/boxes/boxes/index/1', array('return' => 'view'));
+
+		$needle = $this->__getSettingModeText('1');
+		$this->assertTextContains($needle, $this->view);
+		$this->assertTextContains('<div class="box-site box-id-1">', $this->view);
 	}
 
 }

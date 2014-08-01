@@ -31,6 +31,13 @@ class Box extends BoxesAppModel {
 	const TYPE_WITH_ROOM = '3';
 	const TYPE_WITH_PAGE = '4';
 
+/**
+ * Default behaviors
+ *
+ * @var array
+ */
+	public $actsAs = array('Containable');
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
@@ -56,13 +63,6 @@ class Box extends BoxesAppModel {
 		'Room' => array(
 			'className' => 'Room',
 			'foreignKey' => 'room_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Page' => array(
-			'className' => 'Page',
-			'foreignKey' => 'page_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -110,5 +110,86 @@ class Box extends BoxesAppModel {
 			'finderQuery' => '',
 		)
 	);
+
+/**
+ * Get box with frame
+ *
+ * @param string $id Box ID
+ * @return array
+ */
+	public function getBoxWithFrame($id) {
+		$query = array(
+			'conditions' => array(
+				'Box.id' => $id,
+			),
+			'contain' => array(
+				'Page' => array(
+					'conditions' => array(
+						// It must check settingmode and page_id
+						'BoxesPage.is_visible' => true
+					)
+				),
+				'Frame' => $this->Frame->getContainableQuery()
+			)
+		);
+
+		return $this->find('first', $query);
+	}
+
+/**
+ * Get query option for containable behavior with frame
+ *
+ * @return array
+ */
+	private function __getContainableQuery() {
+		$query = array(
+			'order' => array(
+				'Box.weight'
+			),
+			'Frame' => $this->Frame->getContainableQuery()
+		);
+
+		return $query;
+	}
+
+/**
+ * Get condition of query option for containable behavior
+ *
+ * @return array
+ */
+	private function __getConditionsQuery() {
+		$conditions = array(
+			'conditions' => array(
+				// It must check settingmode and page_id
+				'BoxesPage.is_visible' => true
+			)
+		);
+
+		return $conditions;
+	}
+
+/**
+ * Get query option for containable behavior with frame
+ *
+ * @return array
+ */
+	public function getContainableQueryAssociatedPage() {
+		$query = $this->__getContainableQuery();
+		$query['Page'] = $this->__getConditionsQuery();
+
+		return $query;
+	}
+
+/**
+ * Get query option for containable behavior with frame
+ *
+ * @return array
+ */
+	public function getContainableQueryNotAssociatedPage() {
+		$query = $this->__getContainableQuery();
+		$conditions = $this->__getConditionsQuery();
+
+		return array_merge($query, $conditions);
+	}
 
 }

@@ -16,6 +16,13 @@ App::uses('BoxesAppController', 'Boxes.Controller');
 class BoxesController extends BoxesAppController {
 
 /**
+ * uses
+ *
+ * @var array
+ */
+	public $uses = array('Boxes.Box');
+
+/**
  * index method
  *
  * @param string $id boxId
@@ -23,12 +30,15 @@ class BoxesController extends BoxesAppController {
  * @return void
  */
 	public function index($id = null) {
-		$box = $this->Box->findById($id);
+		$box = $this->Box->getBoxWithFrame($id);
 		if (empty($box)) {
 			throw new NotFoundException();
 		}
 
-		$this->set('box', $box);
+		$box['Box']['Frame'] = $box['Frame'];
+		$boxes = array($box['Box']['id'] => $box['Box']);
+
+		$this->set('boxes', $boxes);
 	}
 
 }
