@@ -33,6 +33,18 @@ class BoxesControllerTest extends ControllerTestCase {
 	);
 
 /**
+ * setUp
+ *
+ * @return   void
+ */
+	public function setUp() {
+		parent::setUp();
+
+		App::uses('Page', 'Pages.Model');
+		Page::unsetIsSetting();
+	}
+
+/**
  * Return setting mode text
  *
  * @param string $id Box ID
@@ -77,8 +89,7 @@ class BoxesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndexSettingMode() {
-		Configure::write('Pages.isSetting', true);
-		$this->testAction('/boxes/boxes/index/1', array('return' => 'view'));
+		$this->testAction('/' . Page::SETTING_MODE_WORD . '/boxes/boxes/index/1', array('return' => 'view'));
 
 		$needle = $this->__getSettingModeText('1');
 		$this->assertTextContains($needle, $this->view);

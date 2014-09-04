@@ -25,6 +25,7 @@
     },
     "require-dev": {
         "netcommons/frames":      "dev-master",
+        "netcommons/pages":       "dev-master",
         "mustangostang/spyc":     "dev-master",
         "satooshi/php-coveralls": "dev-master"
     },

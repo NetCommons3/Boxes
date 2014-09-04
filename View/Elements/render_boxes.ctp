@@ -10,7 +10,7 @@
 ?>
 
 <?php foreach ($boxes as $boxId => $box): ?>
-	<?php if (Configure::read('Pages.isSetting')): ?>
+	<?php if (Page::isSetting()): ?>
 		<p>
 			<button class="btn btn-primary form-control" data-toggle="modal" data-target="#pluginList" ng-controller="PluginController" ng-click="showPluginList(<?php echo $boxId; ?>)">
 				<span class="glyphicon glyphicon-pushpin"></span>
@@ -20,7 +20,7 @@
 	<?php endif; ?>
 
 	<div class="box-site box-id-<?php echo $boxId; ?>">
-		<?php 
+		<?php
 			if (!empty($box['Frame'])) {
 				echo $this->element('Frames.render_frames',
 					array('frames' => $box['Frame']));
