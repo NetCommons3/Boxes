@@ -125,7 +125,7 @@ class Box extends BoxesAppModel {
 				'Page' => array(
 					'conditions' => array(
 						// It must check settingmode and page_id
-						'BoxesPage.is_visible' => true
+						'BoxesPage.is_published' => true
 					)
 				),
 				'Frame' => $this->Frame->getContainableQuery()
@@ -160,7 +160,7 @@ class Box extends BoxesAppModel {
 		$conditions = array(
 			'conditions' => array(
 				// It must check settingmode and page_id
-				'BoxesPage.is_visible' => true
+				'BoxesPage.is_published' => true
 			)
 		);
 

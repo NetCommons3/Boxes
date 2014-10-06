@@ -78,7 +78,7 @@ class BoxTest extends CakeTestCase {
 	private function __assertContainableQueryForAssociationPage($containableQuery) {
 		$this->assertArrayHasKey('conditions', $containableQuery);
 		$this->assertCount(1, $containableQuery['conditions']);
-		$this->assertArrayHasKey('BoxesPage.is_visible', $containableQuery['conditions']);
+		$this->assertArrayHasKey('BoxesPage.is_published', $containableQuery['conditions']);
 		$this->assertContains(true, $containableQuery['conditions']);
 	}
 
