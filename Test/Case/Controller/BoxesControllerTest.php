@@ -20,7 +20,7 @@ class TestPluginController extends FramesController {
  * Set to true to automatically render the view
  * after action logic.
  *
- * @var boolean
+ * @var bool
  */
 	public $autoRender = false;
 
