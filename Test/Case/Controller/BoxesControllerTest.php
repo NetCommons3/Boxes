@@ -9,12 +9,19 @@
  */
 
 App::uses('BoxesController', 'Boxes.Controller');
+App::uses('FramesController', 'Frames.Controller');
 
 /**
  * Plugin controller class for testAction
  */
-class TestPluginController extends BoxesController {
+class TestPluginController extends FramesController {
 
+/**
+ * Set to true to automatically render the view
+ * after action logic.
+ *
+ * @var boolean
+ */
 	public $autoRender = false;
 
 /**
