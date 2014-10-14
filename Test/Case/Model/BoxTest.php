@@ -27,7 +27,6 @@ class BoxTest extends CakeTestCase {
 		'plugin.boxes.plugin',
 		'plugin.frames.frame',
 		'plugin.frames.language',
-		'plugin.frames.frames_language'
 	);
 
 /**
@@ -70,7 +69,7 @@ class BoxTest extends CakeTestCase {
 	}
 
 /**
- * It asserts containable query for association page 
+ * It asserts containable query for association page
  *
  * @param array $containableQuery Containable query
  * @return void
@@ -108,9 +107,9 @@ class BoxTest extends CakeTestCase {
 		$this->assertInternalType('array', $box['Frame'][0]['Language']);
 		$this->assertGreaterThanOrEqual(1, count($box['Frame'][0]['Language']));
 
-		$this->assertArrayHasKey('FramesLanguage', $box['Frame'][0]['Language'][0]);
-		$this->assertInternalType('array', $box['Frame'][0]['Language'][0]['FramesLanguage']);
-		$this->assertGreaterThanOrEqual(1, count($box['Frame'][0]['Language'][0]['FramesLanguage']));
+		//$this->assertArrayHasKey('FramesLanguage', $box['Frame'][0]['Language'][0]);
+		//$this->assertInternalType('array', $box['Frame'][0]['Language'][0]['FramesLanguage']);
+		//$this->assertGreaterThanOrEqual(1, count($box['Frame'][0]['Language'][0]['FramesLanguage']));
 
 		$this->assertArrayHasKey('Page', $box);
 		$this->assertInternalType('array', $box['Page']);

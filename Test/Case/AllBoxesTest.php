@@ -8,6 +8,13 @@
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
 
+/**
+ * Boxes All Test Suite
+ *
+ * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
+ * @package NetCommons\NetCommons\Test\Case
+ * @codeCoverageIgnore
+ */
 class AllBoxesTest extends CakeTestSuite {
 
 /**

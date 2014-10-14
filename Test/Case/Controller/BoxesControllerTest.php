@@ -11,6 +11,26 @@
 App::uses('BoxesController', 'Boxes.Controller');
 
 /**
+ * Plugin controller class for testAction
+ */
+class TestPluginController extends BoxesController {
+
+	public $autoRender = false;
+
+/**
+ * index action
+ *
+ * @param string $id frameId
+ * @return string
+ */
+	public function index($id = null) {
+		return 'TestPluginController_index_' . $id;
+	}
+
+}
+CakePlugin::load('TestPlugin', array('path' => 'test_plugin'));
+
+/**
  * Summary for BoxesController Test Case
  */
 class BoxesControllerTest extends ControllerTestCase {
@@ -28,7 +48,6 @@ class BoxesControllerTest extends ControllerTestCase {
 		'plugin.boxes.plugin',
 		'plugin.frames.frame',
 		'plugin.frames.language',
-		'plugin.frames.frames_language'
 	);
 
 /**

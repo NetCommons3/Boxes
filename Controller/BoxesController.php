@@ -12,6 +12,9 @@
 
 App::uses('BoxesAppController', 'Boxes.Controller');
 
+/**
+ * Summary for Boxes Controller
+ */
 class BoxesController extends BoxesAppController {
 
 /**
