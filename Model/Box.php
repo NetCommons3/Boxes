@@ -60,7 +60,7 @@ class Box extends BoxesAppModel {
 			'order' => ''
 		),
 		'Room' => array(
-			'className' => 'Room',
+			'className' => 'Rooms.Room',
 			'foreignKey' => 'room_id',
 			'conditions' => '',
 			'fields' => '',
