@@ -22,11 +22,13 @@ class BoxTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'plugin.boxes.box',
-		'plugin.boxes.page',
 		'plugin.boxes.boxes_page',
-		'plugin.boxes.plugin',
 		'plugin.frames.frame',
-		'plugin.frames.language',
+		'plugin.frames.plugin',
+		'plugin.m17n.language',
+		'plugin.pages.page',
+		'plugin.users.user',
+		'plugin.users.user_attributes_user',
 	);
 
 /**
@@ -101,7 +103,7 @@ class BoxTest extends CakeTestCase {
 
 		$this->assertArrayHasKey('Plugin', $box['Frame'][0]);
 		$this->assertInternalType('array', $box['Frame'][0]['Plugin']);
-		$this->assertEqual(0, count($box['Frame'][0]['Plugin']));
+		$this->assertEqual(11, count($box['Frame'][0]['Plugin']));
 
 		$this->assertArrayHasKey('Language', $box['Frame'][0]);
 		$this->assertInternalType('array', $box['Frame'][0]['Language']);

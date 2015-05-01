@@ -48,13 +48,25 @@ class BoxesControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
+		'plugin.blocks.block',
+		'plugin.blocks.block_role_permission',
 		'plugin.boxes.box',
 		'plugin.boxes.boxes_page',
-		'plugin.boxes.site_setting',
-		'plugin.boxes.page',
-		'plugin.boxes.plugin',
+		'plugin.containers.container',
+		'plugin.containers.containers_page',
 		'plugin.frames.frame',
-		'plugin.frames.language',
+		'plugin.frames.plugin',
+		'plugin.m17n.language',
+		'plugin.net_commons.site_setting',
+		'plugin.pages.page',
+		'plugin.pages.space',
+		'plugin.roles.default_role_permission',
+		'plugin.rooms.roles_room',
+		'plugin.rooms.roles_rooms_user',
+		'plugin.rooms.room',
+		'plugin.rooms.room_role_permission',
+		'plugin.users.user',
+		'plugin.users.user_attributes_user',
 	);
 
 /**
