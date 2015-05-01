@@ -61,7 +61,7 @@ class BoxesPageFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => 3,
-			'page_id' => 3,
+			'page_id' => 1,
 			'box_id' => 3,
 			'is_published' => 1,
 			'created_user_id' => 3,
