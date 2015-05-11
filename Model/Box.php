@@ -46,7 +46,7 @@ class Box extends BoxesAppModel {
  */
 	public $belongsTo = array(
 		'Container' => array(
-			'className' => 'Container',
+			'className' => 'Containers.Container',
 			'foreignKey' => 'container_id',
 			'conditions' => '',
 			'fields' => '',
