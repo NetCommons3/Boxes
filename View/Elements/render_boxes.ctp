@@ -22,10 +22,10 @@
 		</p>
 	<?php endif; ?>
 
-	<?php if (! empty($box['Frame'])) : ?>
+	<?php if (! empty($box['frame'])) : ?>
 		<div class="box-site">
 			<?php echo $this->element('Frames.render_frames', array(
-					'frames' => $box['Frame']
+					'frames' => $box['frame']
 				)); ?>
 		</div>
 	<?php endif; ?>
