@@ -11,10 +11,10 @@
 
 <?php foreach ($boxes as $boxId => $box): ?>
 	<?php if (Page::isSetting()): ?>
+		<?php echo $this->element('Pages.add_plugin', array('boxId' => $boxId)); ?>
+
 		<p>
-			<button class="btn btn-primary form-control" data-toggle="modal" data-target="#pluginList"
-					ng-controller="PluginController"
-					ng-click="showPluginList(<?php echo $boxId; ?>)">
+			<button class="btn btn-primary form-control" data-toggle="modal" data-target="#add-plugin-<?php echo (int)$boxId; ?>">
 
 				<span class="glyphicon glyphicon-pushpin"></span>
 
