@@ -40,7 +40,8 @@
 	<?php if (! empty($box['frame'])) : ?>
 		<div class="box-site">
 			<?php echo $this->element('Frames.render_frames', array(
-					'frames' => $box['frame']
+					'frames' => $box['frame'],
+					'pageId' => (int)$box['boxesPage']['pageId']
 				)); ?>
 		</div>
 	<?php endif; ?>
