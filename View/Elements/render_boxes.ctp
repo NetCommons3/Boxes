@@ -10,11 +10,10 @@
 ?>
 
 <?php foreach ($boxes as $boxId => $box): ?>
-	<?php if (Page::isSetting()): ?>
+	<?php if (Page::isSetting()) : ?>
 		<?php echo $this->element('Pages.add_plugin', array(
 				'boxId' => $boxId,
 				'roomId' => $box['roomId'],
-				'pageId' => $box['boxesPage']['pageId']
 			)); ?>
 
 		<p>

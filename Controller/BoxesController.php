@@ -22,7 +22,10 @@ class BoxesController extends BoxesAppController {
  *
  * @var array
  */
-	public $uses = array('Boxes.Box');
+	public $uses = array(
+		'Boxes.Box',
+		'Containers.Container',
+	);
 
 /**
  * index method
@@ -36,11 +39,13 @@ class BoxesController extends BoxesAppController {
 		if (empty($box)) {
 			throw new NotFoundException();
 		}
-
 		$box['Box']['Frame'] = $box['Frame'];
 		$boxes = array($box['Box']['id'] => $box['Box']);
-
+		$boxes = $this->camelizeKeyRecursive($boxes);
 		$this->set('boxes', $boxes);
+
+		$container = $this->Container->findById($box['Box']['container_id']);
+		$this->set('containerType', $container['Container']['type']);
 	}
 
 }

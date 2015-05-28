@@ -88,12 +88,7 @@ class BoxesControllerTest extends ControllerTestCase {
  * @return void
  */
 	private function __getSettingModeText($id) {
-		$text = '<button ' .
-			'class="btn btn-primary form-control" ' .
-			'data-toggle="modal" ' .
-			'data-target="#pluginList" ' .
-			'ng-controller="PluginController" ' .
-			'ng-click="showPluginList(' . $id . ')">';
+		$text = '<section class="modal fade" id="add-plugin-' . $id;
 		return $text;
 	}
 
@@ -107,7 +102,7 @@ class BoxesControllerTest extends ControllerTestCase {
 
 		$needle = $this->__getSettingModeText('1');
 		$this->assertTextNotContains($needle, $this->view);
-		$this->assertTextContains('<div class="box-site box-id-1">', $this->view);
+		$this->assertTextContains('<div class="box-site">', $this->view);
 	}
 
 /**
@@ -130,7 +125,7 @@ class BoxesControllerTest extends ControllerTestCase {
 
 		$needle = $this->__getSettingModeText('1');
 		$this->assertTextContains($needle, $this->view);
-		$this->assertTextContains('<div class="box-site box-id-1">', $this->view);
+		$this->assertTextContains('<div class="box-site">', $this->view);
 	}
 
 }
