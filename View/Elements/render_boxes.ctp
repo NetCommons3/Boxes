@@ -10,21 +10,37 @@
 ?>
 
 <?php foreach ($boxes as $boxId => $box): ?>
-	<?php if (Page::isSetting()): ?>
+	<?php if (Page::isSetting()) : ?>
+		<?php echo $this->element('Pages.add_plugin', array(
+				'boxId' => $boxId,
+				'roomId' => $box['roomId'],
+			)); ?>
+
 		<p>
-			<button class="btn btn-primary form-control" data-toggle="modal" data-target="#pluginList" ng-controller="PluginController" ng-click="showPluginList(<?php echo $boxId; ?>)">
+			<button class="btn btn-primary form-control" data-toggle="modal" data-target="#add-plugin-<?php echo (int)$boxId; ?>">
+
 				<span class="glyphicon glyphicon-pushpin"></span>
-				<?php echo __('Add plugin'); ?>
+
+				<?php if ($containerType === Container::TYPE_HEADER) : ?>
+					<?php echo __d('boxes', 'Add plugin to header'); ?>
+				<?php elseif ($containerType === Container::TYPE_MAJOR) : ?>
+					<?php echo __d('boxes', 'Add plugin to left'); ?>
+				<?php elseif ($containerType === Container::TYPE_MINOR) : ?>
+					<?php echo __d('boxes', 'Add plugin to right'); ?>
+				<?php elseif ($containerType === Container::TYPE_FOOTER) : ?>
+					<?php echo __d('boxes', 'Add plugin to footer'); ?>
+				<?php else : ?>
+					<?php echo __d('boxes', 'Add plugin to center'); ?>
+				<?php endif; ?>
 			</button>
 		</p>
 	<?php endif; ?>
 
-	<div class="box-site box-id-<?php echo $boxId; ?>">
-		<?php
-			if (!empty($box['Frame'])) {
-				echo $this->element('Frames.render_frames',
-					array('frames' => $box['Frame']));
-			}
-		?>
-	</div>
+	<?php if (! empty($box['frame'])) : ?>
+		<div class="box-site">
+			<?php echo $this->element('Frames.render_frames', array(
+					'frames' => $box['frame']
+				)); ?>
+		</div>
+	<?php endif; ?>
 <?php endforeach;

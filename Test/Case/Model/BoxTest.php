@@ -101,13 +101,13 @@ class BoxTest extends CakeTestCase {
 		$this->assertInternalType('array', $box['Frame']);
 		$this->assertGreaterThanOrEqual(1, count($box['Frame']));
 
-		$this->assertArrayHasKey('Plugin', $box['Frame'][0]);
-		$this->assertInternalType('array', $box['Frame'][0]['Plugin']);
-		$this->assertEqual(11, count($box['Frame'][0]['Plugin']));
-
-		$this->assertArrayHasKey('Language', $box['Frame'][0]);
-		$this->assertInternalType('array', $box['Frame'][0]['Language']);
-		$this->assertGreaterThanOrEqual(1, count($box['Frame'][0]['Language']));
+		//$this->assertArrayHasKey('Plugin', $box['Frame'][0]);
+		//$this->assertInternalType('array', $box['Frame'][0]['Plugin']);
+		//$this->assertEqual(11, count($box['Frame'][0]['Plugin']));
+		//
+		//$this->assertArrayHasKey('Language', $box['Frame'][0]);
+		//$this->assertInternalType('array', $box['Frame'][0]['Language']);
+		//$this->assertGreaterThanOrEqual(1, count($box['Frame'][0]['Language']));
 
 		//$this->assertArrayHasKey('FramesLanguage', $box['Frame'][0]['Language'][0]);
 		//$this->assertInternalType('array', $box['Frame'][0]['Language'][0]['FramesLanguage']);
