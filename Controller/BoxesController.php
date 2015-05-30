@@ -28,6 +28,15 @@ class BoxesController extends BoxesAppController {
 	);
 
 /**
+ * use component
+ *
+ * @var array
+ */
+	public $components = array(
+		'Pages.PageLayout',
+	);
+
+/**
  * index method
  *
  * @param string $id boxId
