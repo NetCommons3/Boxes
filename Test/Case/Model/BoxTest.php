@@ -24,9 +24,9 @@ class BoxTest extends CakeTestCase {
 		'plugin.boxes.box',
 		'plugin.boxes.boxes_page',
 		'plugin.frames.frame',
-		'plugin.frames.plugin',
 		'plugin.m17n.language',
 		'plugin.pages.page',
+		'plugin.plugin_manager.plugin',
 		'plugin.users.user',
 		'plugin.users.user_attributes_user',
 	);
