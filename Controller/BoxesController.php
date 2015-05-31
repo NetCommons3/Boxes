@@ -55,6 +55,8 @@ class BoxesController extends BoxesAppController {
 
 		$container = $this->Container->findById($box['Box']['container_id']);
 		$this->set('containerType', $container['Container']['type']);
+
+		$this->set('languageId', 2);
 	}
 
 }
