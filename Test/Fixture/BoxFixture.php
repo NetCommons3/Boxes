@@ -107,6 +107,20 @@ class BoxFixture extends CakeTestFixture {
 			'modified_user' => 1,
 			'modified' => '2014-04-30 06:57:01'
 		),
+		//page.permalink=test
+		array(
+			'id' => 6,
+			'container_id' => 6,
+			'type' => 4,
+			'space_id' => 1,
+			'room_id' => 1,
+			'page_id' => 6,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
 	);
 
 }
