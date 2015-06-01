@@ -1,0 +1,36 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"PO-Revision-Date: 2015-06-01 17:56+0900\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"POT-Creation-Date: \n"
+"Language: ja\n"
+"X-Generator: Poedit 1.8.1\n"
+
+#: Boxes/View/Elements/render_boxes.ctp:25
+msgid "Add plugin to header"
+msgstr "プラグイン追加(ヘッダー)"
+
+#: Boxes/View/Elements/render_boxes.ctp:27
+msgid "Add plugin to left"
+msgstr "プラグイン追加(左カラム)"
+
+#: Boxes/View/Elements/render_boxes.ctp:29
+msgid "Add plugin to right"
+msgstr "プラグイン追加(右カラム)"
+
+#: Boxes/View/Elements/render_boxes.ctp:31
+msgid "Add plugin to footer"
+msgstr "プラグイン追加(フッター)"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Add plugin to center"
+msgstr "プラグイン追加(中央カラム)"
