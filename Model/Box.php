@@ -53,7 +53,7 @@ class Box extends BoxesAppModel {
 			'order' => ''
 		),
 		'Space' => array(
-			'className' => 'Space',
+			'className' => 'PublicSpace.Space',
 			'foreignKey' => 'space_id',
 			'conditions' => '',
 			'fields' => '',
@@ -96,7 +96,7 @@ class Box extends BoxesAppModel {
  */
 	public $hasAndBelongsToMany = array(
 		'Page' => array(
-			'className' => 'Page',
+			'className' => 'Pages.Page',
 			'joinTable' => 'boxes_pages',
 			'foreignKey' => 'box_id',
 			'associationForeignKey' => 'page_id',
