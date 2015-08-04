@@ -53,7 +53,7 @@ class Box extends BoxesAppModel {
 			'order' => ''
 		),
 		'Space' => array(
-			'className' => 'PublicSpace.Space',
+			'className' => 'Rooms.Space',
 			'foreignKey' => 'space_id',
 			'conditions' => '',
 			'fields' => '',
