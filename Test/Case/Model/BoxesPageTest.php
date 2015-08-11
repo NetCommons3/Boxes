@@ -23,7 +23,7 @@ class BoxesPageTest extends CakeTestCase {
 	public $fixtures = array(
 		'plugin.boxes.boxes_page',
 		'plugin.boxes.box',
-		'plugin.pages.page',
+		//'plugin.pages.page',
 	);
 
 /**
