@@ -10,6 +10,7 @@
 
 App::uses('BoxesController', 'Boxes.Controller');
 App::uses('FramesController', 'Frames.Controller');
+App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
 
 /**
  * Plugin controller class for testAction
@@ -40,7 +41,7 @@ CakePlugin::load('TestPlugin', array('path' => 'test_plugin'));
 /**
  * Summary for BoxesController Test Case
  */
-class BoxesControllerTest extends ControllerTestCase {
+class BoxesControllerTest extends YAControllerTestCase {
 
 /**
  * Fixtures
