@@ -39,6 +39,8 @@ class BoxTest extends YACakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
+		Configure::write('Config.languageId', '2');
+
 		$this->Box = ClassRegistry::init('Boxes.Box');
 	}
 
@@ -49,6 +51,7 @@ class BoxTest extends YACakeTestCase {
  */
 	public function tearDown() {
 		unset($this->Box);
+		Configure::write('Config.languageId', null);
 
 		parent::tearDown();
 	}
