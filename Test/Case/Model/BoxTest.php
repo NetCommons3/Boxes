@@ -100,7 +100,7 @@ class BoxTest extends YACakeTestCase {
 
 		$this->assertArrayHasKey('Frame', $box);
 		$this->assertInternalType('array', $box['Frame']);
-		//$this->assertGreaterThanOrEqual(1, count($box['Frame']));後で確認。
+		$this->assertGreaterThanOrEqual(1, count($box['Frame']));
 
 		//$this->assertArrayHasKey('Plugin', $box['Frame'][0]);
 		//$this->assertInternalType('array', $box['Frame'][0]['Plugin']);
