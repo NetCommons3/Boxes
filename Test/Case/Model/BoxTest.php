@@ -9,11 +9,12 @@
  */
 
 App::uses('Box', 'Boxes.Model');
+App::uses('YACakeTestCase', 'NetCommons.TestSuite');
 
 /**
  * Summary for Box Test Case
  */
-class BoxTest extends CakeTestCase {
+class BoxTest extends YACakeTestCase {
 
 /**
  * Fixtures
@@ -23,12 +24,6 @@ class BoxTest extends CakeTestCase {
 	public $fixtures = array(
 		'plugin.boxes.box',
 		'plugin.boxes.boxes_page',
-		'plugin.frames.frame',
-		'plugin.m17n.language',
-		'plugin.pages.page',
-		'plugin.plugin_manager.plugin',
-		'plugin.users.user',
-		'plugin.users.user_attributes_user',
 	);
 
 /**
@@ -38,6 +33,8 @@ class BoxTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
+		Configure::write('Config.languageId', '2');
+
 		$this->Box = ClassRegistry::init('Boxes.Box');
 	}
 
@@ -48,6 +45,7 @@ class BoxTest extends CakeTestCase {
  */
 	public function tearDown() {
 		unset($this->Box);
+		Configure::write('Config.languageId', null);
 
 		parent::tearDown();
 	}

@@ -9,11 +9,12 @@
  */
 
 App::uses('BoxesPage', 'Boxes.Model');
+App::uses('YACakeTestCase', 'NetCommons.TestSuite');
 
 /**
  * Summary for BoxesPage Test Case
  */
-class BoxesPageTest extends CakeTestCase {
+class BoxesPageTest extends YACakeTestCase {
 
 /**
  * Fixtures
@@ -23,7 +24,6 @@ class BoxesPageTest extends CakeTestCase {
 	public $fixtures = array(
 		'plugin.boxes.boxes_page',
 		'plugin.boxes.box',
-		'plugin.pages.page',
 	);
 
 /**
