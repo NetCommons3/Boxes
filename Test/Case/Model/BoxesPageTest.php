@@ -24,7 +24,6 @@ class BoxesPageTest extends YACakeTestCase {
 	public $fixtures = array(
 		'plugin.boxes.boxes_page',
 		'plugin.boxes.box',
-		//'plugin.pages.page',
 	);
 
 /**

@@ -24,12 +24,6 @@ class BoxTest extends YACakeTestCase {
 	public $fixtures = array(
 		'plugin.boxes.box',
 		'plugin.boxes.boxes_page',
-		//'plugin.frames.frame',
-		//'plugin.m17n.language',
-		//'plugin.pages.page',
-		//'plugin.plugin_manager.plugin',
-		//'plugin.users.user',
-		//'plugin.users.user_attributes_user',
 	);
 
 /**
