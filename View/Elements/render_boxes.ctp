@@ -13,7 +13,7 @@
 	<?php if (Page::isSetting()) : ?>
 		<?php echo $this->element('Pages.add_plugin', array(
 				'boxId' => $boxId,
-				'roomId' => $box['roomId'],
+				'roomId' => $box['room_id'],
 			)); ?>
 
 		<p>
@@ -36,10 +36,10 @@
 		</p>
 	<?php endif; ?>
 
-	<?php if (! empty($box['frame'])) : ?>
+	<?php if (! empty($box['Frame'])) : ?>
 		<div class="box-site">
 			<?php echo $this->element('Frames.render_frames', array(
-					'frames' => $box['frame']
+					'frames' => $box['Frame']
 				)); ?>
 		</div>
 	<?php endif; ?>
