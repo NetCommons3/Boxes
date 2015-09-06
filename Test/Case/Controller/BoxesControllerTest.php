@@ -105,7 +105,7 @@ class BoxesControllerTest extends YAControllerTestCase {
  * @return void
  */
 	public function testIndexSettingMode() {
-		$this->testAction('/' . Page::SETTING_MODE_WORD . '/boxes/boxes/index/1', array('return' => 'view'));
+		$this->testAction('/' . Current::SETTING_MODE_WORD . '/boxes/boxes/index/1', array('return' => 'view'));
 
 		$needle = $this->__getSettingModeText('1');
 		$this->assertTextContains($needle, $this->view);

@@ -10,7 +10,7 @@
 ?>
 
 <?php foreach ($boxes as $boxId => $box): ?>
-	<?php if (Page::isSetting()) : ?>
+	<?php if (Current::isSettingMode()) : ?>
 		<?php echo $this->element('Pages.add_plugin', array(
 				'boxId' => $boxId,
 				'roomId' => $box['room_id'],
