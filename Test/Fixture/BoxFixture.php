@@ -121,6 +121,20 @@ class BoxFixture extends CakeTestFixture {
 			'modified_user' => 1,
 			'modified' => '2014-04-30 06:57:01'
 		),
+		//別ルーム(room_id=2)
+		array(
+			'id' => 7,
+			'container_id' => 7,
+			'type' => 4,
+			'space_id' => 1,
+			'room_id' => 2,
+			'page_id' => 7,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
 	);
 
 }
