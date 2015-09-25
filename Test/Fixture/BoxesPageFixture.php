@@ -84,11 +84,30 @@ class BoxesPageFixture extends CakeTestFixture {
 			'modified_user_id' => 5,
 			'modified' => '2014-08-01 08:25:34'
 		),
-
 		//page.permalink=test
 		array(
 			'page_id' => 2,
 			'box_id' => 6,
+			'is_published' => 1,
+			'created_user_id' => 6,
+			'created' => '2014-08-01 08:25:34',
+			'modified_user_id' => 6,
+			'modified' => '2014-08-01 08:25:34'
+		),
+		//別ルーム(room_id=4)
+		array(
+			'page_id' => 3,
+			'box_id' => 7,
+			'is_published' => 1,
+			'created_user_id' => 6,
+			'created' => '2014-08-01 08:25:34',
+			'modified_user_id' => 6,
+			'modified' => '2014-08-01 08:25:34'
+		),
+		//別ルーム(room_id=5、ブロックなし)
+		array(
+			'page_id' => 4,
+			'box_id' => 8,
 			'is_published' => 1,
 			'created_user_id' => 6,
 			'created' => '2014-08-01 08:25:34',

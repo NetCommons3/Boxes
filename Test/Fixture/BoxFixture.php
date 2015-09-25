@@ -114,21 +114,35 @@ class BoxFixture extends CakeTestFixture {
 			'type' => 4,
 			'space_id' => 1,
 			'room_id' => 1,
-			'page_id' => 6,
+			'page_id' => 2,
 			'weight' => 1,
 			'created_user' => 1,
 			'created' => '2014-04-30 06:57:01',
 			'modified_user' => 1,
 			'modified' => '2014-04-30 06:57:01'
 		),
-		//別ルーム(room_id=2)
+		//別ルーム(room_id=4)
 		array(
 			'id' => 7,
 			'container_id' => 7,
 			'type' => 4,
 			'space_id' => 1,
-			'room_id' => 2,
-			'page_id' => 7,
+			'room_id' => 4,
+			'page_id' => 3,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
+		//別ルーム(room_id=5、ブロックなし)
+		array(
+			'id' => 8,
+			'container_id' => 8,
+			'type' => 4,
+			'space_id' => 1,
+			'room_id' => 5,
+			'page_id' => 4,
 			'weight' => 1,
 			'created_user' => 1,
 			'created' => '2014-04-30 06:57:01',
