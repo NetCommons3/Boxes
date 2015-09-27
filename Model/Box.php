@@ -131,6 +131,7 @@ class Box extends BoxesAppModel {
 				'Frame' => $this->Frame->getContainableQuery()
 			)
 		);
+debug($query);
 
 		return $this->find('first', $query);
 	}

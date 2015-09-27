@@ -1,47 +1,58 @@
 <?php
 /**
- * BoxesController Test Case
+ * BoxesのElementテスト
  *
- * @copyright Copyright 2014, NetCommons Project
  * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
  * @link http://www.netcommons.org NetCommons Project
  * @license http://www.netcommons.org/license.txt NetCommons License
+ * @copyright Copyright 2014, NetCommons Project
  */
 
-App::uses('BoxesController', 'Boxes.Controller');
-App::uses('FramesController', 'Frames.Controller');
-App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
+//App::uses('BoxesController', 'Boxes.Controller');
+//App::uses('FramesController', 'Frames.Controller');
+//App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
+App::uses('NetCommonsControllerTestCase', 'NetCommons.TestSuite');
+//
+///**
+// * Plugin controller class for testAction
+// */
+//class TestBoxesController extends Controller {
+//
+///**
+// * Set to true to automatically render the view
+// * after action logic.
+// *
+// * @var bool
+// */
+//	public $autoRender = false;
+//
+///**
+// * index action
+// *
+// * @param string $id frameId
+// * @return string
+// */
+//	public function index($id = null) {
+//		return 'TestPluginController_index_' . $id;
+//	}
+//
+//}
+//CakePlugin::load('TestPlugin', array('path' => 'test_plugin'));
 
 /**
- * Plugin controller class for testAction
- */
-class TestPluginController extends FramesController {
-
-/**
- * Set to true to automatically render the view
- * after action logic.
+ * BoxesのElementテスト
  *
- * @var bool
+ * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
+ * @package NetCommons\Announcements\Test\Case\Controller
  */
-	public $autoRender = false;
+class BoxesControllerTest extends NetCommonsControllerTestCase {
 
 /**
- * index action
+ * Plugin name
  *
- * @param string $id frameId
- * @return string
+ * @var array
  */
-	public function index($id = null) {
-		return 'TestPluginController_index_' . $id;
-	}
-
-}
-CakePlugin::load('TestPlugin', array('path' => 'test_plugin'));
-
-/**
- * Summary for BoxesController Test Case
- */
-class BoxesControllerTest extends YAControllerTestCase {
+	protected $_plugin = 'test_boxes';
 
 /**
  * Fixtures
@@ -59,10 +70,14 @@ class BoxesControllerTest extends YAControllerTestCase {
  * @return   void
  */
 	public function setUp() {
+		//Current::$current['Page']['permalink'] = '';
+		Current::$current['Language']['id'] = '2';
+
+		NetCommonsControllerTestCase::loadTestPlugin($this, 'Boxes', 'TestBoxes');
 		parent::setUp();
 
-		App::uses('Page', 'Pages.Model');
-		//Page::unsetIsSetting();
+//		App::uses('Page', 'Pages.Model');
+//		//Page::unsetIsSetting();
 	}
 
 /**
@@ -77,13 +92,13 @@ class BoxesControllerTest extends YAControllerTestCase {
 	//}
 
 /**
- * testIndex method
+ * render_boxesエレメントのテスト
  *
  * @return void
  */
 	public function testIndex() {
-		//$this->testAction('/boxes/boxes/index/1', array('return' => 'view'));
-		//
+		$this->testAction('/test_boxes/test_boxes/index/3', array('return' => 'view'));
+
 		//$needle = $this->__getSettingModeText('1');
 		//$this->assertTextNotContains($needle, $this->view);
 		//$this->assertTextContains('<div class="box-site">', $this->view);
