@@ -52,7 +52,7 @@ class BoxesControllerTest extends NetCommonsControllerTestCase {
  *
  * @var array
  */
-	protected $_plugin = 'test_boxes';
+	protected $_plugin = 'test_plugin';
 
 /**
  * Fixtures
@@ -70,14 +70,11 @@ class BoxesControllerTest extends NetCommonsControllerTestCase {
  * @return   void
  */
 	public function setUp() {
-		//Current::$current['Page']['permalink'] = '';
 		Current::$current['Language']['id'] = '2';
 
+		NetCommonsControllerTestCase::loadTestPlugin($this, 'NetCommons', 'TestPlugin');
 		NetCommonsControllerTestCase::loadTestPlugin($this, 'Boxes', 'TestBoxes');
 		parent::setUp();
-
-//		App::uses('Page', 'Pages.Model');
-//		//Page::unsetIsSetting();
 	}
 
 /**
@@ -97,11 +94,15 @@ class BoxesControllerTest extends NetCommonsControllerTestCase {
  * @return void
  */
 	public function testIndex() {
-		$this->testAction('/test_boxes/test_boxes/index/3', array('return' => 'view'));
+		$this->testAction('/test_boxes/test_boxes/index/3', array(
+			'return' => 'view'
+		));
+
+//		debug($this->view);
 
 		//$needle = $this->__getSettingModeText('1');
 		//$this->assertTextNotContains($needle, $this->view);
-		//$this->assertTextContains('<div class="box-site">', $this->view);
+		$this->assertTextContains('<div class="box-site">', $this->view);
 	}
 
 /**
