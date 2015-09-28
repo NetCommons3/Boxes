@@ -37,7 +37,9 @@ class TestBoxesController extends BoxesAppController {
  */
 	public function index($id = null) {
 		$box = $this->Box->getBoxWithFrame($id);
-		$boxes = array($box['Box']['id'] => $box);
+
+		$box['Box']['Frame'] = $box['Frame'];
+		$boxes = array($box['Box']['id'] => $box['Box']);
 		$this->set('boxes', $boxes);
 
 		$container = $this->Container->findById($box['Box']['container_id']);

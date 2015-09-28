@@ -9,12 +9,15 @@
  */
 
 App::uses('Box', 'Boxes.Model');
-App::uses('YACakeTestCase', 'NetCommons.TestSuite');
+App::uses('NetCommonsModelTestCase', 'NetCommons.TestSuite');
 
 /**
- * Summary for Box Test Case
+ * Box Test Case
+ *
+ * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
+ * @package NetCommons\Boxes\Test\Case\Model
  */
-class BoxTest extends YACakeTestCase {
+class BoxTest extends NetCommonsModelTestCase {
 
 /**
  * Fixtures
@@ -27,27 +30,14 @@ class BoxTest extends YACakeTestCase {
 	);
 
 /**
- * setUp method
+ * setUp
  *
- * @return void
+ * @return   void
  */
 	public function setUp() {
+		Current::$current['Language']['id'] = '2';
+
 		parent::setUp();
-		Configure::write('Config.languageId', '2');
-
-		$this->Box = ClassRegistry::init('Boxes.Box');
-	}
-
-/**
- * tearDown method
- *
- * @return void
- */
-	public function tearDown() {
-		unset($this->Box);
-		Configure::write('Config.languageId', null);
-
-		parent::tearDown();
 	}
 
 /**
@@ -87,37 +77,25 @@ class BoxTest extends YACakeTestCase {
  * @return void
  */
 	public function testGetBoxWithFrame() {
-		//$box = $this->Box->getBoxWithFrame(1);
-		//
-		//$this->assertCount(3, $box);
-		//
-		//$this->assertArrayHasKey('Box', $box);
-		//$this->assertInternalType('array', $box['Box']);
-		//$this->assertGreaterThanOrEqual(1, count($box['Box']));
-		//
-		//$this->assertArrayHasKey('Frame', $box);
-		//$this->assertInternalType('array', $box['Frame']);
-		//$this->assertGreaterThanOrEqual(1, count($box['Frame']));
-		//
-		////$this->assertArrayHasKey('Plugin', $box['Frame'][0]);
-		////$this->assertInternalType('array', $box['Frame'][0]['Plugin']);
-		////$this->assertEqual(11, count($box['Frame'][0]['Plugin']));
-		////
-		////$this->assertArrayHasKey('Language', $box['Frame'][0]);
-		////$this->assertInternalType('array', $box['Frame'][0]['Language']);
-		////$this->assertGreaterThanOrEqual(1, count($box['Frame'][0]['Language']));
-		//
-		////$this->assertArrayHasKey('FramesLanguage', $box['Frame'][0]['Language'][0]);
-		////$this->assertInternalType('array', $box['Frame'][0]['Language'][0]['FramesLanguage']);
-		////$this->assertGreaterThanOrEqual(1, count($box['Frame'][0]['Language'][0]['FramesLanguage']));
-		//
-		//$this->assertArrayHasKey('Page', $box);
-		//$this->assertInternalType('array', $box['Page']);
-		//$this->assertGreaterThanOrEqual(1, count($box['Page']));
-		//
-		//$this->assertArrayHasKey('BoxesPage', $box['Page'][0]);
-		//$this->assertInternalType('array', $box['Page'][0]['BoxesPage']);
-		//$this->assertGreaterThanOrEqual(1, count($box['Page'][0]['BoxesPage']));
+		$box = $this->Box->getBoxWithFrame(3);
+
+		$this->assertCount(3, $box);
+
+		$this->assertArrayHasKey('Box', $box);
+		$this->assertInternalType('array', $box['Box']);
+		$this->assertGreaterThanOrEqual(1, count($box['Box']));
+
+		$this->assertArrayHasKey('Frame', $box);
+		$this->assertInternalType('array', $box['Frame']);
+		$this->assertGreaterThanOrEqual(1, count($box['Frame']));
+
+		$this->assertArrayHasKey('Page', $box);
+		$this->assertInternalType('array', $box['Page']);
+		$this->assertGreaterThanOrEqual(1, count($box['Page']));
+
+		$this->assertArrayHasKey('BoxesPage', $box['Page'][0]);
+		$this->assertInternalType('array', $box['Page'][0]['BoxesPage']);
+		$this->assertGreaterThanOrEqual(1, count($box['Page'][0]['BoxesPage']));
 	}
 
 /**

@@ -7,6 +7,7 @@
  * @link http://www.netcommons.org NetCommons Project
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
+
 ?>
 
 <?php foreach ($boxes as $boxId => $box): ?>

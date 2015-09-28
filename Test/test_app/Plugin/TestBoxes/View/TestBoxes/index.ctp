@@ -8,6 +8,5 @@
  * @license http://www.netcommons.org/license.txt NetCommons License
  * @copyright Copyright 2014, NetCommons Project
  */
-debug($boxes);
 
 echo $this->element('Boxes.render_boxes', array('boxes' => $boxes));
