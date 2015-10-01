@@ -19,13 +19,6 @@ App::uses('NetCommonsControllerTestCase', 'NetCommons.TestSuite');
 class BoxesControllerTest extends NetCommonsControllerTestCase {
 
 /**
- * Plugin name
- *
- * @var array
- */
-	protected $_plugin = 'test_plugin';
-
-/**
  * Fixtures
  *
  * @var array
@@ -41,7 +34,6 @@ class BoxesControllerTest extends NetCommonsControllerTestCase {
  * @return   void
  */
 	public function setUp() {
-		NetCommonsControllerTestCase::loadTestPlugin($this, 'NetCommons', 'TestPlugin');
 		NetCommonsControllerTestCase::loadTestPlugin($this, 'Boxes', 'TestBoxes');
 		parent::setUp();
 	}
