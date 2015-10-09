@@ -1,21 +1,22 @@
 <?php
 /**
- * Boxes Controller
+ * TestBoxes Controller
  *
- * @property Box $Box
- *
- * @copyright Copyright 2014, NetCommons Project
- * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
+ * @author Shohei Nakajima <nakajimashouhei@gmail.com>
  * @link http://www.netcommons.org NetCommons Project
  * @license http://www.netcommons.org/license.txt NetCommons License
+ * @copyright Copyright 2014, NetCommons Project
  */
 
 App::uses('BoxesAppController', 'Boxes.Controller');
 
 /**
- * Summary for Boxes Controller
+ * TestBoxes Controller
+ *
+ * @author Shohei Nakajima <nakajimashouhei@gmail.com>
+ * @package NetCommons\Boxes\Test\test_app\Plugin\Boxes\Controller
  */
-class BoxesController extends BoxesAppController {
+class TestBoxesController extends BoxesAppController {
 
 /**
  * uses
@@ -28,15 +29,6 @@ class BoxesController extends BoxesAppController {
 	);
 
 /**
- * use component
- *
- * @var array
- */
-	public $components = array(
-		'Pages.PageLayout',
-	);
-
-/**
  * index method
  *
  * @param string $id boxId
@@ -45,18 +37,20 @@ class BoxesController extends BoxesAppController {
  */
 	public function index($id = null) {
 		$box = $this->Box->getBoxWithFrame($id);
-		if (empty($box)) {
-			throw new NotFoundException();
-		}
+
 		$box['Box']['Frame'] = $box['Frame'];
 		$boxes = array($box['Box']['id'] => $box['Box']);
-		$boxes = $this->camelizeKeyRecursive($boxes);
 		$this->set('boxes', $boxes);
 
 		$container = $this->Container->findById($box['Box']['container_id']);
 		$this->set('containerType', $container['Container']['type']);
 
-		$this->set('languageId', 2);
+		$results = array(
+			'containers' => Hash::combine($container['Container'], '{n}.type', '{n}'),
+			'boxes' => Hash::combine($box['Box'], '{n}.id', '{n}', '{n}.container_id'),
+			'plugins' => array(),
+		);
+		$this->helpers['Pages.PageLayout'] = $results;
 	}
 
 }

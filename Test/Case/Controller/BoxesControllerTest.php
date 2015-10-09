@@ -1,47 +1,22 @@
 <?php
 /**
- * BoxesController Test Case
+ * BoxesのElementテスト
  *
- * @copyright Copyright 2014, NetCommons Project
  * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
  * @link http://www.netcommons.org NetCommons Project
  * @license http://www.netcommons.org/license.txt NetCommons License
+ * @copyright Copyright 2014, NetCommons Project
  */
 
-App::uses('BoxesController', 'Boxes.Controller');
-App::uses('FramesController', 'Frames.Controller');
-App::uses('YAControllerTestCase', 'NetCommons.TestSuite');
+App::uses('NetCommonsControllerTestCase', 'NetCommons.TestSuite');
 
 /**
- * Plugin controller class for testAction
- */
-class TestPluginController extends FramesController {
-
-/**
- * Set to true to automatically render the view
- * after action logic.
+ * BoxesのElementテスト
  *
- * @var bool
+ * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
+ * @package NetCommons\Boxes\Test\Case\Controller
  */
-	public $autoRender = false;
-
-/**
- * index action
- *
- * @param string $id frameId
- * @return string
- */
-	public function index($id = null) {
-		return 'TestPluginController_index_' . $id;
-	}
-
-}
-CakePlugin::load('TestPlugin', array('path' => 'test_plugin'));
-
-/**
- * Summary for BoxesController Test Case
- */
-class BoxesControllerTest extends YAControllerTestCase {
+class BoxesControllerTest extends NetCommonsControllerTestCase {
 
 /**
  * Fixtures
@@ -59,57 +34,44 @@ class BoxesControllerTest extends YAControllerTestCase {
  * @return   void
  */
 	public function setUp() {
+		NetCommonsControllerTestCase::loadTestPlugin($this, 'Boxes', 'TestBoxes');
 		parent::setUp();
-
-		App::uses('Page', 'Pages.Model');
-		//Page::unsetIsSetting();
 	}
 
 /**
- * Return setting mode text
- *
- * @param string $id Box ID
- * @return void
- */
-	//private function __getSettingModeText($id) {
-	//	$text = '<section class="modal fade" id="add-plugin-' . $id;
-	//	return $text;
-	//}
-
-/**
- * testIndex method
+ * render_boxesエレメントのテスト
  *
  * @return void
  */
 	public function testIndex() {
-		//$this->testAction('/boxes/boxes/index/1', array('return' => 'view'));
-		//
-		//$needle = $this->__getSettingModeText('1');
-		//$this->assertTextNotContains($needle, $this->view);
-		//$this->assertTextContains('<div class="box-site">', $this->view);
+		Current::isSettingMode(false);
+
+		$boxId = '3';
+		$this->testAction(
+			'/test_boxes/test_boxes/index/' . $boxId,
+			array('return' => 'view')
+		);
+
+		$this->assertTextNotContains('id="add-plugin-' . $boxId . '"', $this->view);
+		$this->assertTextContains('<div class="box-site">', $this->view);
 	}
 
 /**
- * testIndexNotFound method
- *
- * @return void
- */
-	public function testIndexNotFound() {
-		//$this->setExpectedException('NotFoundException');
-		//$this->testAction('/boxes/boxes/index');
-	}
-
-/**
- * testIndexSettingMode method
+ * render_boxesエレメントのセッティングモード時のテスト
  *
  * @return void
  */
 	public function testIndexSettingMode() {
-		//$this->testAction('/' . Current::SETTING_MODE_WORD . '/boxes/boxes/index/1', array('return' => 'view'));
-		//
-		//$needle = $this->__getSettingModeText('1');
-		//$this->assertTextContains($needle, $this->view);
-		//$this->assertTextContains('<div class="box-site">', $this->view);
+		Current::isSettingMode(true);
+
+		$boxId = '3';
+		$this->testAction(
+			'/' . Current::SETTING_MODE_WORD . '/test_boxes/test_boxes/index/' . $boxId,
+			array('return' => 'view')
+		);
+
+		$this->assertTextContains('id="add-plugin-' . $boxId . '"', $this->view);
+		$this->assertTextContains('<div class="box-site">', $this->view);
 	}
 
 }
