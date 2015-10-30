@@ -36,6 +36,8 @@ class TestBoxesController extends BoxesAppController {
  * @return void
  */
 	public function index($id = null) {
+		Current::$current['Language']['id'] = '2';
+
 		$box = $this->Box->getBoxWithFrame($id);
 
 		$box['Box']['Frame'] = $box['Frame'];
