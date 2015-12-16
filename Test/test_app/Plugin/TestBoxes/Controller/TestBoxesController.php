@@ -47,12 +47,10 @@ class TestBoxesController extends BoxesAppController {
 		$container = $this->Container->findById($box['Box']['container_id']);
 		$this->set('containerType', $container['Container']['type']);
 
-		$results = array(
-			'containers' => Hash::combine($container['Container'], '{n}.type', '{n}'),
-			'boxes' => Hash::combine($box['Box'], '{n}.id', '{n}', '{n}.container_id'),
-			'plugins' => array(),
-		);
-		$this->helpers['Pages.PageLayout'] = $results;
+		$this->set('page', Hash::merge($box, $container));
+		$this->set('modal', null);
+
+		$this->helpers[] = 'Pages.PageLayout';
 	}
 
 }
