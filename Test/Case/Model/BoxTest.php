@@ -20,6 +20,13 @@ App::uses('NetCommonsModelTestCase', 'NetCommons.TestSuite');
 class BoxTest extends NetCommonsModelTestCase {
 
 /**
+ * Plugin name
+ *
+ * @var array
+ */
+	public $plugin = 'boxes';
+
+/**
  * Fixtures
  *
  * @var array
@@ -30,15 +37,11 @@ class BoxTest extends NetCommonsModelTestCase {
 	);
 
 /**
- * setUp
+ * Model name
  *
- * @return   void
+ * @var array
  */
-	public function setUp() {
-		Current::$current['Language']['id'] = '2';
-
-		parent::setUp();
-	}
+	protected $_modelName = 'Box';
 
 /**
  * It asserts containable query
