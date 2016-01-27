@@ -8,7 +8,7 @@
  * @copyright Copyright 2014, NetCommons Project
  */
 
-App::uses('BoxesAppController', 'Boxes.Controller');
+App::uses('AppController', 'Controller');
 
 /**
  * TestBoxes Controller
@@ -16,7 +16,7 @@ App::uses('BoxesAppController', 'Boxes.Controller');
  * @author Shohei Nakajima <nakajimashouhei@gmail.com>
  * @package NetCommons\Boxes\Test\test_app\Plugin\Boxes\Controller
  */
-class TestBoxesController extends BoxesAppController {
+class TestBoxesController extends AppController {
 
 /**
  * uses
