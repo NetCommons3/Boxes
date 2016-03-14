@@ -65,7 +65,7 @@ class Records extends NetCommonsMigration {
 				'container_id' => '3',
 				'type' => '4',
 				'space_id' => null,
-				'room_id' => 1,
+				'room_id' => '1',
 				'page_id' => '1',
 				'weight' => '1',
 			),
@@ -73,7 +73,7 @@ class Records extends NetCommonsMigration {
 				'id' => '4',
 				'container_id' => '4',
 				'type' => '1',
-				'space_id' => 1,
+				'space_id' => '1',
 				'room_id' => '1',
 				'page_id' => null,
 				'weight' => '1',
@@ -82,14 +82,25 @@ class Records extends NetCommonsMigration {
 				'id' => '5',
 				'container_id' => '5',
 				'type' => '1',
-				'space_id' => 1,
+				'space_id' => '1',
 				'room_id' => '1',
-				'page_id' => null,
+				'page_id' => '1',
+				'weight' => '1',
+			),
+			//パブリックスペースのホーム
+			array(
+				'id' => '6',
+				'container_id' => '6',
+				'type' => '1',
+				'space_id' => '1',
+				'room_id' => '1',
+				'page_id' => '2',
 				'weight' => '1',
 			),
 		),
 
 		'BoxesPage' => array(
+			//パブリックスペース自体
 			array(
 				'id' => '1',
 				'page_id' => '1',
@@ -116,6 +127,37 @@ class Records extends NetCommonsMigration {
 			),
 			array(
 				'id' => '5',
+				'page_id' => '1',
+				'box_id' => '5',
+				'is_published' => true,
+			),
+			//パブリックスペースのホーム
+			array(
+				'id' => '6',
+				'page_id' => '2',
+				'box_id' => '1',
+				'is_published' => true,
+			),
+			array(
+				'id' => '7',
+				'page_id' => '2',
+				'box_id' => '2',
+				'is_published' => true,
+			),
+			array(
+				'id' => '8',
+				'page_id' => '2',
+				'box_id' => '6',
+				'is_published' => true,
+			),
+			array(
+				'id' => '9',
+				'page_id' => '1',
+				'box_id' => '4',
+				'is_published' => true,
+			),
+			array(
+				'id' => '10',
 				'page_id' => '1',
 				'box_id' => '5',
 				'is_published' => true,
