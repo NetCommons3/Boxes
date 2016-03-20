@@ -56,7 +56,7 @@ class BoxRecords extends NetCommonsMigration {
 				'room_id' => '1', 'page_id' => '1', 'weight' => '1',
 			),
 			array(
-				'id' => '4', 'container_id' => '4', 'type' => '1', 'space_id' => '21',
+				'id' => '4', 'container_id' => '4', 'type' => '1', 'space_id' => '2',
 				'room_id' => '1', 'page_id' => '1', 'weight' => '1',
 			),
 			array(
