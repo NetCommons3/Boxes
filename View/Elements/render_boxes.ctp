@@ -33,4 +33,6 @@
 	<?php endif; ?>
 <?php endforeach; ?>
 
-<hr>
+<?php if (Current::isSettingMode()) : ?>
+	<hr>
+<?php endif;
