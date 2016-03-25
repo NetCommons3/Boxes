@@ -7,16 +7,23 @@
  * @link http://www.netcommons.org NetCommons Project
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
-
 ?>
 
 <?php foreach ($boxes as $boxId => $box): ?>
 	<?php if (Current::isSettingMode()) : ?>
+		<p></p>
+		<?php echo $this->element('Boxes.switch_box', array(
+				'box' => $box,
+				'pageId' => Current::read('Page.id'),
+				'containerType' => $containerType,
+			)); ?>
+
 		<?php echo $this->element('Frames.add_plugin', array(
 				'boxId' => $boxId,
 				'roomId' => $box['room_id'],
 				'containerType' => $containerType,
 			)); ?>
+		<p></p>
 	<?php endif; ?>
 
 	<?php if (! empty($box['Frame'])) : ?>

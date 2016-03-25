@@ -34,3 +34,19 @@ msgstr "プラグイン追加(フッター)"
 #: Boxes/View/Elements/render_boxes.ctp:33
 msgid "Add plugin to center"
 msgstr "プラグイン追加(中央カラム)"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Switch box"
+msgstr "ボックスの切り替え"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Public space type"
+msgstr "パブリックスペース"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Room type"
+msgstr "ルーム"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Page type"
+msgstr "ページ"
