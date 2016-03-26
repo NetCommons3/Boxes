@@ -8,27 +8,35 @@
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
 
-if ($box['page_id'] === $box['BoxesPage']['page_id']) {
+if ($box['page_id'] === Current::read('Page.id')) {
 	$boxPageType = Box::TYPE_WITH_PAGE;
+} elseif ($box['page_id'] === Current::read('Page.parent_id')) {
+	$boxPageType = Box::TYPE_WITH_PARENT_PAGE;
 } elseif ($box['room_id'] === Current::read('Room.id') && Current::read('Room.id') !== Room::PUBLIC_PARENT_ID) {
 	$boxPageType = Box::TYPE_WITH_ROOM;
 } else {
 	$boxPageType = Box::TYPE_WITH_SITE;
 }
+$box['type'] = $boxPageType;
 
 if ($containerType === Container::TYPE_MAIN) {
 	$options = array();
 } elseif (Current::read('Room.id') === Room::PUBLIC_PARENT_ID) {
 	$options = array(
-		Box::TYPE_WITH_SITE => __d('boxes', 'Public space type'),
+		Box::TYPE_WITH_SITE => __d('boxes', 'Site type'),
+		Box::TYPE_WITH_PARENT_PAGE => __d('boxes', 'Parent page type'),
 		Box::TYPE_WITH_PAGE => __d('boxes', 'Page type'),
 	);
 } else {
 	$options = array(
-		Box::TYPE_WITH_SITE => __d('boxes', 'Public space type'),
+		Box::TYPE_WITH_SITE => __d('boxes', 'Site type'),
 		Box::TYPE_WITH_ROOM => __d('boxes', 'Room type'),
+		Box::TYPE_WITH_PARENT_PAGE => __d('boxes', 'Parent page type'),
 		Box::TYPE_WITH_PAGE => __d('boxes', 'Page type'),
 	);
+}
+if (in_array(Current::read('Page.parent_id'), [Page::PUBLIC_ROOT_PAGE_ID, Page::PRIVATE_ROOT_PAGE_ID, Page::ROOM_ROOT_PAGE_ID], true)) {
+	$options = Hash::remove($options, Box::TYPE_WITH_PARENT_PAGE);
 }
 $options = Hash::remove($options, $boxPageType);
 

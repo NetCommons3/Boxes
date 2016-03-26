@@ -40,12 +40,16 @@ msgid "Switch box"
 msgstr "ボックスの切り替え"
 
 #: Boxes/View/Elements/render_boxes.ctp:33
-msgid "Public space type"
-msgstr "パブリックスペース"
+msgid "Site type"
+msgstr "サイト共通"
 
 #: Boxes/View/Elements/render_boxes.ctp:33
 msgid "Room type"
 msgstr "ルーム"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Parent page type"
+msgstr "親ページ"
 
 #: Boxes/View/Elements/render_boxes.ctp:33
 msgid "Page type"

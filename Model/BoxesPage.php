@@ -61,7 +61,12 @@ class BoxesPage extends PagesAppModel {
 			'type' => Hash::get($this->data, 'Box.type'),
 			'container_id' => Hash::get($this->data, 'Box.container_id'),
 		);
-		if (Hash::get($this->data, 'Box.type') === Box::TYPE_WITH_PAGE) {
+		if (Hash::get($this->data, 'Box.type') === Box::TYPE_WITH_PARENT_PAGE) {
+			$conditions['page_id'] = Current::read('Page.parent_id');
+			$this->data['Box']['space_id'] = Current::read('Room.space_id');
+			$this->data['Box']['room_id'] = Current::read('Room.id');
+			$conditions['type'] = Box::TYPE_WITH_PAGE;
+		} elseif (Hash::get($this->data, 'Box.type') === Box::TYPE_WITH_PAGE) {
 			$conditions['page_id'] = Current::read('Page.id');
 			$this->data['Box']['space_id'] = Current::read('Room.space_id');
 			$this->data['Box']['room_id'] = Current::read('Room.id');

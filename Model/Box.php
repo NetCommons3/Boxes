@@ -23,12 +23,30 @@ App::uses('BoxesAppModel', 'Boxes.Model');
 class Box extends BoxesAppModel {
 
 /**
- * constant value
+ * サイトタイプ
  */
 	const TYPE_WITH_SITE = '1';
+
+/**
+ * スペースタイプ
+ */
 	const TYPE_WITH_SPACE = '2';
+
+/**
+ * ルームタイプ
+ */
 	const TYPE_WITH_ROOM = '3';
+
+/**
+ * ページタイプ
+ */
 	const TYPE_WITH_PAGE = '4';
+
+/**
+ * 親ページ
+ * ※選択する際のみ使用。
+ */
+	const TYPE_WITH_PARENT_PAGE = '5';
 
 /**
  * Default behaviors
