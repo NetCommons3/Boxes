@@ -11,12 +11,6 @@
 
 <?php foreach ($boxes as $boxId => $box): ?>
 	<?php if (Current::isSettingMode()) : ?>
-		<?php echo $this->element('Boxes.switch_box', array(
-				'box' => $box,
-				'pageId' => Current::read('Page.id'),
-				'containerType' => $containerType,
-			)); ?>
-
 		<?php echo $this->element('Frames.add_plugin', array(
 				'boxId' => $boxId,
 				'roomId' => $box['room_id'],
