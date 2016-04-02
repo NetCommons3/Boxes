@@ -25,8 +25,4 @@
 				)); ?>
 		</div>
 	<?php endif; ?>
-<?php endforeach; ?>
-
-<?php if (Current::isSettingMode()) : ?>
-	<hr>
-<?php endif;
+<?php endforeach;
