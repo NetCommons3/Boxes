@@ -43,12 +43,6 @@ class Box extends BoxesAppModel {
 	const TYPE_WITH_PAGE = '4';
 
 /**
- * 親ページ
- * ※選択する際のみ使用。
- */
-	const TYPE_WITH_PARENT_PAGE = '5';
-
-/**
  * Default behaviors
  *
  * @var array
