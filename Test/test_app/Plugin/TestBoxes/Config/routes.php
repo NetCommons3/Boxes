@@ -15,6 +15,6 @@ Router::connect(
 );
 
 Router::connect(
-	'/test_boxes/test_boxes/:action/*',
-	array('plugin' => 'test_boxes', 'controller' => 'test_boxes')
+	'/test_boxes/:controller/:action/*',
+	array('plugin' => 'test_boxes')
 );
