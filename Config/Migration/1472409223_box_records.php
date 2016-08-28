@@ -157,16 +157,6 @@ class BoxRecords extends NetCommonsMigration {
  * @return bool Should process continue
  */
 	public function after($direction) {
-		if ($direction === 'down') {
-			return true;
-		}
-
-		foreach ($this->records as $model => $records) {
-			if (!$this->updateRecords($model, $records)) {
-				return false;
-			}
-		}
-
-		return true;
+		return parent::updateAndDeleteRecords($direction);
 	}
 }
