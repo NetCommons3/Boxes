@@ -21,7 +21,8 @@
 	<?php if (! empty($box['Frame'])) : ?>
 		<div class="box-site">
 			<?php echo $this->element('Frames.render_frames', array(
-					'frames' => $box['Frame']
+					'frames' => $box['Frame'],
+					'containerType' => $containerType,
 				)); ?>
 		</div>
 	<?php endif; ?>
