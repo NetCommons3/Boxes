@@ -13,7 +13,7 @@
 	<?php if (Current::isSettingMode()) : ?>
 		<?php echo $this->element('Frames.add_plugin', array(
 				'boxId' => $boxId,
-				'roomId' => $box['room_id'],
+				'roomId' => $box['Box']['room_id'],
 				'containerType' => $containerType,
 			)); ?>
 	<?php endif; ?>
