@@ -221,8 +221,7 @@ class SwitchBoxes extends NetCommonsMigration {
 					', ContainersPage.modified' .
 				' FROM ' . $tablePrefix . Inflector::tableize('ContainersPage') . ' ContainersPage' .
 				' INNER JOIN ' . $tablePrefix . Inflector::tableize('Container') . ' Container' .
-				' ON (ContainersPage.container_id = Container.id)' .
-				' WHERE ContainersPage.page_id NOT IN (1, 2, 3)';
+				' ON (ContainersPage.container_id = Container.id)';
 
 		$PageContainers->query($sql);
 		$result = $PageContainers->getAffectedRows() > 0;
@@ -342,31 +341,31 @@ class SwitchBoxes extends NetCommonsMigration {
  * @return void
  */
 	private function __saveBoxesPageContainers() {
-		$FrameesPageContainer = $this->generateModel('BoxesPageContainer');
+		$BoxesPageContainer = $this->generateModel('BoxesPageContainer');
 
-		$tablePrefix = $FrameesPageContainer->tablePrefix;
+		$tablePrefix = $BoxesPageContainer->tablePrefix;
 
-		$schema = $FrameesPageContainer->schema();
+		$schema = $BoxesPageContainer->schema();
 		unset($schema['id']);
 		unset($schema['created_user'], $schema['modified_user']);
 		$schemaColumns = implode(', ', array_keys($schema));
 
 		$now = '\'' . gmdate('Y-m-d H:i:s') . '\'';
 
-		$sql = 'INSERT INTO ' . $tablePrefix . $FrameesPageContainer->table . '(' . $schemaColumns . ')' .
+		$sql = 'INSERT INTO ' . $tablePrefix . $BoxesPageContainer->table . '(' . $schemaColumns . ')' .
 				' SELECT' .
 					' PageContainer.id, PageContainer.page_id, PageContainer.container_type, Box.id' .
 					', 1 AS is_published, 1 AS weight, ' . $now . ', ' . $now .
 				' FROM ' . $tablePrefix . Inflector::tableize('PageContainer') . ' PageContainer' .
 				' INNER JOIN ' . $tablePrefix . Inflector::tableize('Box') . ' Box' .
 				' ON (PageContainer.container_type = Box.container_type AND Box.type = 1)';
-		$FrameesPageContainer->query($sql);
-		$result = $FrameesPageContainer->getAffectedRows() > 0;
+		$BoxesPageContainer->query($sql);
+		$result = $BoxesPageContainer->getAffectedRows() > 0;
 		if (! $result) {
 			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 		}
 
-		$sql = 'INSERT INTO ' . $tablePrefix . $FrameesPageContainer->table . '(' . $schemaColumns . ')' .
+		$sql = 'INSERT INTO ' . $tablePrefix . $BoxesPageContainer->table . '(' . $schemaColumns . ')' .
 				' SELECT' .
 					' PageContainer.id, PageContainer.page_id, PageContainer.container_type, Box.id' .
 					', 0 AS is_published, 2 AS weight, ' . $now . ', ' . $now .
@@ -378,13 +377,13 @@ class SwitchBoxes extends NetCommonsMigration {
 				' INNER JOIN ' . $tablePrefix . Inflector::tableize('Box') . ' Box' .
 				' ON (PageContainer.container_type = Box.container_type' .
 					' AND Room.space_id = Box.space_id AND Box.type = 2)';
-		$FrameesPageContainer->query($sql);
-		$result = $FrameesPageContainer->getAffectedRows() > 0;
+		$BoxesPageContainer->query($sql);
+		$result = $BoxesPageContainer->getAffectedRows() > 0;
 		if (! $result) {
 			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 		}
 
-		$sql = 'INSERT INTO ' . $tablePrefix . $FrameesPageContainer->table . '(' . $schemaColumns . ')' .
+		$sql = 'INSERT INTO ' . $tablePrefix . $BoxesPageContainer->table . '(' . $schemaColumns . ')' .
 				' SELECT' .
 					' PageContainer.id, PageContainer.page_id, PageContainer.container_type, Box.id' .
 					', 0 AS is_published, 3 AS weight, ' . $now . ', ' . $now .
@@ -396,13 +395,13 @@ class SwitchBoxes extends NetCommonsMigration {
 				' INNER JOIN ' . $tablePrefix . Inflector::tableize('Box') . ' Box' .
 				' ON (PageContainer.container_type = Box.container_type' .
 					' AND Room.space_id = Box.space_id AND Room.id = Box.room_id AND Box.type = 3)';
-		$FrameesPageContainer->query($sql);
-		$result = $FrameesPageContainer->getAffectedRows() > 0;
+		$BoxesPageContainer->query($sql);
+		$result = $BoxesPageContainer->getAffectedRows() > 0;
 		if (! $result) {
 			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 		}
 
-		$sql = 'INSERT INTO ' . $tablePrefix . $FrameesPageContainer->table . '(' . $schemaColumns . ')' .
+		$sql = 'INSERT INTO ' . $tablePrefix . $BoxesPageContainer->table . '(' . $schemaColumns . ')' .
 				' SELECT' .
 					' PageContainer.id, PageContainer.page_id, PageContainer.container_type, Box.id' .
 					', 0 AS is_published, 4 AS weight, ' . $now . ', ' . $now .
@@ -410,13 +409,13 @@ class SwitchBoxes extends NetCommonsMigration {
 				' INNER JOIN ' . $tablePrefix . Inflector::tableize('Box') . ' Box' .
 				' ON (PageContainer.page_id = Box.page_id AND PageContainer.container_type = Box.container_type)' .
 				' WHERE PageContainer.container_type != ' . Container::TYPE_MAIN;
-		$FrameesPageContainer->query($sql);
-		$result = $FrameesPageContainer->getAffectedRows() > 0;
+		$BoxesPageContainer->query($sql);
+		$result = $BoxesPageContainer->getAffectedRows() > 0;
 		if (! $result) {
 			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 		}
 
-		$sql = 'INSERT INTO ' . $tablePrefix . $FrameesPageContainer->table . '(' . $schemaColumns . ')' .
+		$sql = 'INSERT INTO ' . $tablePrefix . $BoxesPageContainer->table . '(' . $schemaColumns . ')' .
 				' SELECT' .
 					' PageContainer.id, PageContainer.page_id, PageContainer.container_type, Box.id' .
 					', 1 AS is_published, 1 AS weight, ' . $now . ', ' . $now .
@@ -424,8 +423,8 @@ class SwitchBoxes extends NetCommonsMigration {
 				' INNER JOIN ' . $tablePrefix . Inflector::tableize('Box') . ' Box' .
 				' ON (PageContainer.page_id = Box.page_id AND PageContainer.container_type = Box.container_type)' .
 				' WHERE PageContainer.container_type = ' . Container::TYPE_MAIN;
-		$FrameesPageContainer->query($sql);
-		$result = $FrameesPageContainer->getAffectedRows() > 0;
+		$BoxesPageContainer->query($sql);
+		$result = $BoxesPageContainer->getAffectedRows() > 0;
 		if (! $result) {
 			throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 		}

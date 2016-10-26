@@ -1,6 +1,6 @@
 <?php
 /**
- * Box Test Case
+ * BoxesPageContainer Test Case
  *
 * @author Noriko Arai <arai@nii.ac.jp>
 * @author Your Name <yourname@domain.com>
@@ -9,12 +9,12 @@
 * @copyright Copyright 2014, NetCommons Project
  */
 
-App::uses('Box', 'Boxes.Model');
+App::uses('BoxesPageContainer', 'Boxes.Model');
 
 /**
- * Summary for Box Test Case
+ * Summary for BoxesPageContainer Test Case
  */
-class BoxTest extends CakeTestCase {
+class BoxesPageContainerTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -22,21 +22,15 @@ class BoxTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'plugin.boxes.box',
-		'plugin.boxes.container',
+		'plugin.boxes.boxes_page_container',
+		'plugin.boxes.page_container',
 		'plugin.boxes.user',
 		'plugin.boxes.role',
 		'plugin.boxes.user_role_setting',
 		'plugin.boxes.users_language',
 		'plugin.boxes.language',
-		'plugin.boxes.space',
-		'plugin.boxes.room',
 		'plugin.boxes.page',
-		'plugin.boxes.boxes_page',
-		'plugin.boxes.frame',
-		'plugin.boxes.frames_bk1477374164',
-		'plugin.boxes.page_container',
-		'plugin.boxes.boxes_page_container'
+		'plugin.boxes.box'
 	);
 
 /**
@@ -46,7 +40,7 @@ class BoxTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Box = ClassRegistry::init('Boxes.Box');
+		$this->BoxesPageContainer = ClassRegistry::init('Boxes.BoxesPageContainer');
 	}
 
 /**
@@ -55,7 +49,7 @@ class BoxTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Box);
+		unset($this->BoxesPageContainer);
 
 		parent::tearDown();
 	}
