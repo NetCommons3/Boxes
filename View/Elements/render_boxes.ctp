@@ -12,7 +12,7 @@
 <?php foreach ($boxes as $boxId => $box): ?>
 	<?php if (Current::isSettingMode()) : ?>
 		<?php echo $this->element('Frames.add_plugin', array(
-				'boxId' => $boxId,
+				'boxId' => $box['Box']['id'],
 				'roomId' => $box['Box']['room_id'],
 				'containerType' => $containerType,
 			)); ?>
