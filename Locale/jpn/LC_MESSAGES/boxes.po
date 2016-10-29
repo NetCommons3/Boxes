@@ -16,16 +16,12 @@ msgstr ""
 "X-Generator: Poedit 1.8.1\n"
 
 #: Boxes/View/Elements/render_boxes.ctp:25
+msgid "Add plugin"
+msgstr "プラグイン追加"
+
+#: Boxes/View/Elements/render_boxes.ctp:25
 msgid "Add plugin to header"
 msgstr "プラグイン追加(ヘッダー)"
-
-#: Boxes/View/Elements/render_boxes.ctp:27
-msgid "Add plugin to left"
-msgstr "プラグイン追加(左カラム)"
-
-#: Boxes/View/Elements/render_boxes.ctp:29
-msgid "Add plugin to right"
-msgstr "プラグイン追加(右カラム)"
 
 #: Boxes/View/Elements/render_boxes.ctp:31
 msgid "Add plugin to footer"
@@ -33,4 +29,34 @@ msgstr "プラグイン追加(フッター)"
 
 #: Boxes/View/Elements/render_boxes.ctp:33
 msgid "Add plugin to center"
-msgstr "プラグイン追加(中央カラム)"
+msgstr "プラグイン追加(センター)"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Common area of the whole site%s"
+msgstr "サイト全体で共通のエリア%s"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "(left column)"
+msgstr "(左)"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "(right column)"
+msgstr "(右)"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Common area of the whole %s space%s"
+msgstr "%s共通のエリア%s"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Common area of the whole room%s"
+msgstr "ルーム共通のエリア%s"
+
+#: Boxes/View/Elements/render_boxes.ctp:33
+msgid "Area of this page only%s"
+msgstr "当ページのみのエリア%s"
+
+msgid "Display"
+msgstr "表示"
+
+msgid "Non display"
+msgstr "非表示"

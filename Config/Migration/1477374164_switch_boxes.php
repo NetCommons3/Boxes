@@ -166,6 +166,7 @@ class SwitchBoxes extends NetCommonsMigration {
  *
  * @param string $direction Direction of migration process (up or down)
  * @return bool Should process continue
+ * @throws InternalErrorException
  */
 	public function after($direction) {
 		$db = ConnectionManager::getDataSource('master');
@@ -234,30 +235,31 @@ class SwitchBoxes extends NetCommonsMigration {
  *
  * @param string $direction Migration処理 (up or down)
  * @return void
+ * @throws InternalErrorException
  */
 	private function __saveBoxes($direction) {
-		$Frame = $this->generateModel('Box');
-		$FrameOld = $this->generateModel('BoxesBk1477374164');
-		$schemaColumns = implode(', ', array_keys($FrameOld->schema()));
+		$Box = $this->generateModel('Box');
+		$BoxOld = $this->generateModel('BoxesBk1477374164');
+		$schemaColumns = implode(', ', array_keys($BoxOld->schema()));
 
 		if ($direction === 'up') {
-			$sql = 'INSERT INTO ' . $FrameOld->tablePrefix . $FrameOld->table . '(' . $schemaColumns . ') ' .
-					'SELECT ' . $schemaColumns . ' FROM ' . $Frame->tablePrefix . $Frame->table;
-			$FrameOld->query($sql);
-			$result = $FrameOld->getAffectedRows() > 0;
+			$sql = 'INSERT INTO ' . $BoxOld->tablePrefix . $BoxOld->table . '(' . $schemaColumns . ') ' .
+					'SELECT ' . $schemaColumns . ' FROM ' . $Box->tablePrefix . $Box->table;
+			$BoxOld->query($sql);
+			$result = $BoxOld->getAffectedRows() > 0;
 			if (! $result) {
 				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 			}
 
-			if (! $Frame->deleteAll(array('1' => '1'), false)) {
+			if (! $Box->deleteAll(array('1' => '1'), false)) {
 				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 			}
-			$Frame->query('TRUNCATE TABLE ' . $Frame->tablePrefix . $Frame->table);
+			$Box->query('TRUNCATE TABLE ' . $Box->tablePrefix . $Box->table);
 
 			$Room = $this->generateModel('Room');
 			$Page = $this->generateModel('Page');
 
-			$schema = $Frame->schema();
+			$schema = $Box->schema();
 			unset($schema['id'], $schema['container_id'], $schema['weight']);
 			unset($schema['created_user'], $schema['modified_user']);
 			$schemaColumns = implode(', ', array_keys($schema));
@@ -269,7 +271,7 @@ class SwitchBoxes extends NetCommonsMigration {
 				array('type' => Box::TYPE_WITH_ROOM, 'where' => 'id NOT IN (1, 3, 4)'),
 			);
 			foreach ($wheres as $where) {
-				$sql = 'INSERT INTO ' . $Frame->tablePrefix . $Frame->table . '(' . $schemaColumns . ')' .
+				$sql = 'INSERT INTO ' . $Box->tablePrefix . $Box->table . '(' . $schemaColumns . ')' .
 						' SELECT ' . $where['type'] . ', space_id, id, null, ' . Container::TYPE_HEADER .
 									', ' . $now . ', ' . $now .
 						' FROM ' . $Room->tablePrefix . $Room->table . ' WHERE ' . $where['where'] .
@@ -282,26 +284,18 @@ class SwitchBoxes extends NetCommonsMigration {
 						' UNION SELECT ' . $where['type'] . ', space_id, id, null, ' . Container::TYPE_FOOTER .
 									', ' . $now . ', ' . $now .
 						' FROM ' . $Room->tablePrefix . $Room->table . ' WHERE ' . $where['where'];
-				$Frame->query($sql);
-				$result = $Frame->getAffectedRows() > 0;
-				if (! $result) {
-					//throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
-				}
+				$Box->query($sql);
 			}
 
 			$tableFromWhere = ' FROM ' . $Page->tablePrefix . $Page->table . ' Page' .
 					' INNER JOIN ' . $Room->tablePrefix . $Room->table . ' Room ON (Page.room_id = Room.id)' .
-					' WHERE Page.root_id IS NOT NULL';
-			$sql = 'INSERT INTO ' . $Frame->tablePrefix . $Frame->table . '(' . $schemaColumns . ')' .
+					' WHERE 1 = 1';
+			$sql = 'INSERT INTO ' . $Box->tablePrefix . $Box->table . '(' . $schemaColumns . ')' .
 					' SELECT ' . Box::TYPE_WITH_PAGE . ', Room.space_id, Room.id, Page.id, ' . Container::TYPE_HEADER .
 								', ' . $now . ', ' . $now .
 					$tableFromWhere .
 					' UNION' .
 					' SELECT ' . Box::TYPE_WITH_PAGE . ', Room.space_id, Room.id, Page.id, ' . Container::TYPE_MAJOR .
-								', ' . $now . ', ' . $now .
-					$tableFromWhere .
-					' UNION' .
-					' SELECT ' . Box::TYPE_WITH_PAGE . ', Room.space_id, Room.id, Page.id, ' . Container::TYPE_MAIN .
 								', ' . $now . ', ' . $now .
 					$tableFromWhere .
 					' UNION' .
@@ -312,21 +306,26 @@ class SwitchBoxes extends NetCommonsMigration {
 					' SELECT ' . Box::TYPE_WITH_PAGE . ', Room.space_id, Room.id, Page.id, ' . Container::TYPE_FOOTER .
 								', ' . $now . ', ' . $now .
 					$tableFromWhere;
-			$Frame->query($sql);
-			$result = $Frame->getAffectedRows() > 0;
-			if (! $result) {
-				//throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
-			}
+			$Box->query($sql);
+
+			$tableFromWhere = ' FROM ' . $Page->tablePrefix . $Page->table . ' Page' .
+					' INNER JOIN ' . $Room->tablePrefix . $Room->table . ' Room ON (Page.room_id = Room.id)' .
+					' WHERE Page.root_id IS NOT NULL';
+			$sql = 'INSERT INTO ' . $Box->tablePrefix . $Box->table . '(' . $schemaColumns . ')' .
+					' SELECT ' . Box::TYPE_WITH_PAGE . ', Room.space_id, Room.id, Page.id, ' . Container::TYPE_MAIN .
+								', ' . $now . ', ' . $now .
+					$tableFromWhere;
+			$Box->query($sql);
 
 		} else {
-			if (! $Frame->deleteAll(array('1' => '1'), false)) {
+			if (! $Box->deleteAll(array('1' => '1'), false)) {
 				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 			}
 
-			$sql = 'INSERT INTO ' . $Frame->tablePrefix . $Frame->table . '(' . $schemaColumns . ') ' .
-					'SELECT ' . $schemaColumns . ' FROM ' . $FrameOld->tablePrefix . $FrameOld->table;
-			$Frame->query($sql);
-			$result = $Frame->getAffectedRows() > 0;
+			$sql = 'INSERT INTO ' . $Box->tablePrefix . $Box->table . '(' . $schemaColumns . ') ' .
+					'SELECT ' . $schemaColumns . ' FROM ' . $BoxOld->tablePrefix . $BoxOld->table;
+			$Box->query($sql);
+			$result = $Box->getAffectedRows() > 0;
 			if (! $result) {
 				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 			}
@@ -339,6 +338,7 @@ class SwitchBoxes extends NetCommonsMigration {
  * BoxesPageContainerデータの登録
  *
  * @return void
+ * @throws InternalErrorException
  */
 	private function __saveBoxesPageContainers() {
 		$BoxesPageContainer = $this->generateModel('BoxesPageContainer');
@@ -437,6 +437,7 @@ class SwitchBoxes extends NetCommonsMigration {
  *
  * @param string $direction Migration処理 (up or down)
  * @return void
+ * @throws InternalErrorException
  */
 	private function __saveFrames($direction) {
 		$Frame = $this->generateModel('Frame');
@@ -454,7 +455,7 @@ class SwitchBoxes extends NetCommonsMigration {
 			}
 
 			$sql = 'UPDATE ' .
-					$Frame->tablePrefix . $Frame->table .' Frame, ' .
+					$Frame->tablePrefix . $Frame->table . ' Frame, ' .
 					'(' .
 						'SELECT Frame2.id AS frame_id, Box.id AS box_id' .
 						' FROM ' . $FrameOld->tablePrefix . $FrameOld->table . ' Frame2' .
@@ -472,7 +473,7 @@ class SwitchBoxes extends NetCommonsMigration {
 			}
 
 			$sql = 'UPDATE ' .
-					$Frame->tablePrefix . $Frame->table .' Frame' .
+					$Frame->tablePrefix . $Frame->table . ' Frame' .
 					' SET Frame.box_id = 3' .
 					' WHERE Frame.box_id = 4';
 			$Frame->query($sql);
@@ -482,7 +483,7 @@ class SwitchBoxes extends NetCommonsMigration {
 			//}
 
 			$sql = 'UPDATE ' .
-					$Frame->tablePrefix . $Frame->table .' Frame' .
+					$Frame->tablePrefix . $Frame->table . ' Frame' .
 					' SET Frame.box_id = 4' .
 					' WHERE Frame.box_id = 5';
 			$Frame->query($sql);
@@ -493,8 +494,8 @@ class SwitchBoxes extends NetCommonsMigration {
 
 		} else {
 			$sql = 'UPDATE ' .
-						$Frame->tablePrefix . $Frame->table .' Frame, ' .
-						$FrameOld->tablePrefix . $FrameOld->table .' FrameOld' .
+						$Frame->tablePrefix . $Frame->table . ' Frame, ' .
+						$FrameOld->tablePrefix . $FrameOld->table . ' FrameOld' .
 					' SET Frame.box_id = FrameOld.box_id' .
 					' WHERE Frame.id = FrameOld.id';
 			$Frame->query($sql);

@@ -43,13 +43,6 @@ class Box extends BoxesAppModel {
  */
 	const TYPE_WITH_PAGE = '4';
 
-/**
- * Default behaviors
- *
- * @var array
- */
-//	public $actsAs = array('Containable');
-
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
@@ -58,13 +51,6 @@ class Box extends BoxesAppModel {
  * @var array
  */
 	public $belongsTo = array(
-//		'Container' => array(
-//			'className' => 'Containers.Container',
-//			'foreignKey' => 'container_id',
-//			'conditions' => '',
-//			'fields' => '',
-//			'order' => ''
-//		),
 		'Space' => array(
 			'className' => 'Rooms.Space',
 			'foreignKey' => 'space_id',
@@ -103,69 +89,6 @@ class Box extends BoxesAppModel {
 	);
 
 /**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-//	public $hasAndBelongsToMany = array(
-//		'Page' => array(
-//			'className' => 'Pages.Page',
-//			'joinTable' => 'boxes_pages',
-//			'foreignKey' => 'box_id',
-//			'associationForeignKey' => 'page_id',
-//			'unique' => 'keepExisting',
-//			'conditions' => '',
-//			'fields' => '',
-//			'order' => '',
-//			'limit' => '',
-//			'offset' => '',
-//			'finderQuery' => '',
-//		)
-//	);
-
-/**
- * Constructor. Binds the model's database table to the object.
- *
- * @param bool|int|string|array $id Set this ID for this model on startup,
- * can also be an array of options, see above.
- * @param string $table Name of database table to use.
- * @param string $ds DataSource connection name.
- * @see Model::__construct()
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- */
-//	public function __construct($id = false, $table = null, $ds = null) {
-//		parent::__construct($id, $table, $ds);
-//		$this->loadModels([
-//			'BoxesPage' => 'Boxes.BoxesPage',
-//		]);
-//	}
-
-/**
- * Get box with frame
- *
- * @param string $id Box ID
- * @return array
- */
-//	public function getBoxWithFrame($id) {
-//		$query = array(
-//			'conditions' => array(
-//				'Box.id' => $id,
-//			),
-//			'contain' => array(
-//				'Page' => array(
-//					'conditions' => array(
-//						// It must check settingmode and page_id
-//						'BoxesPage.is_published' => true
-//					)
-//				),
-//				'Frame' => $this->Frame->getContainableQuery()
-//			)
-//		);
-//
-//		return $this->find('first', $query);
-//	}
-
-/**
  * Frame付きのボックスを取得
  *
  * @param string $pageContainerId BoxesPageContainerのID
@@ -176,6 +99,30 @@ class Box extends BoxesAppModel {
 			'BoxesPageContainer' => 'Boxes.BoxesPageContainer',
 			'Frame' => 'Frames.Frame',
 		]);
+
+		$this->BoxesPageContainer->bindModel(array(
+			'belongsTo' => array(
+				'Room' => array(
+					'className' => 'Rooms.Room',
+					//'fields' => array('id', 'name'),
+					'foreignKey' => false,
+					'type' => 'LEFT',
+					'conditions' => array(
+						'Room.id' . ' = ' . 'Box.room_id',
+					),
+				),
+				'RoomsLanguage' => array(
+					'className' => 'Rooms.RoomsLanguage',
+					'fields' => array('id', 'name'),
+					'foreignKey' => false,
+					'type' => 'LEFT',
+					'conditions' => array(
+						'RoomsLanguage.room_id' . ' = ' . 'Box.room_id',
+						'RoomsLanguage.language_id' => Current::read('Language.id', '0'),
+					),
+				),
+			)
+		), false);
 
 		$query = array(
 			'recursive' => 0,
@@ -196,61 +143,5 @@ class Box extends BoxesAppModel {
 
 		return $boxes;
 	}
-
-/**
- * Get query option for containable behavior with frame
- *
- * @return array
- */
-//	private function __getContainableQuery() {
-//		$query = array(
-//			'order' => array(
-//				'Box.weight'
-//			),
-//			'Frame' => $this->Frame->getContainableQuery()
-//		);
-//
-//		return $query;
-//	}
-
-/**
- * Get condition of query option for containable behavior
- *
- * @return array
- */
-//	private function __getConditionsQuery() {
-//		$conditions = array(
-//			'conditions' => array(
-//				// It must check settingmode and page_id
-//				'BoxesPage.is_published' => true
-//			)
-//		);
-//
-//		return $conditions;
-//	}
-
-/**
- * Get query option for containable behavior with frame
- *
- * @return array
- */
-//	public function getContainableQueryAssociatedPage() {
-//		$query = $this->__getContainableQuery();
-//		$query['Page'] = $this->__getConditionsQuery();
-//
-//		return $query;
-//	}
-
-/**
- * Get query option for containable behavior with frame
- *
- * @return array
- */
-//	public function getContainableQueryNotAssociatedPage() {
-//		$query = $this->__getContainableQuery();
-//		$conditions = $this->__getConditionsQuery();
-//
-//		return array_merge($query, $conditions);
-//	}
 
 }

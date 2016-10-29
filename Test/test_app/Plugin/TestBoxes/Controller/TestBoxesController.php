@@ -41,7 +41,7 @@ class TestBoxesController extends AppController {
 		$box = $this->Box->getBoxWithFrame($id);
 
 		$box['Box']['Frame'] = $box['Frame'];
-		$box['Box']['BoxesPage'] = $box['Page'][0]['BoxesPage'];
+		//$box['Box']['BoxesPage'] = $box['Page'][0]['BoxesPage'];
 		$boxes[$box['Box']['id']] = $box['Box'];
 
 		$this->set('boxes', $boxes);

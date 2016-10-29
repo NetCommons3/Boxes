@@ -1,0 +1,56 @@
+/**
+ * boxes/css/style.css
+ *
+ * @author Shohei Nakajima <nakajimashouhei@gmail.com>
+ * @link http://www.netcommons.org NetCommons Project
+ * @license http://www.netcommons.org/license.txt NetCommons License
+ */
+
+/**
+ * 共通
+ */
+.panel.box-panel,
+.panel.box-panel-head,
+.panel.box-panel-body {
+	border-radius: 0px;
+	box-shadow: none;
+}
+.panel.box-panel > .panel-heading,
+.panel.box-panel-head > .panel-heading {
+	padding: 8px;
+}
+.panel.box-panel > .panel-body,
+.panel.box-panel-body > .panel-body {
+	padding: 8px;
+}
+
+.add-plugin {
+	margin-bottom: 16px;
+}
+.add-plugin:last-child {
+	margin-bottom: 0px;
+}
+
+section.frame.panel:last-child {
+	margin-bottom: 8px;
+}
+
+.box-display {
+	margin-right: 4px;
+}
+
+/**
+ * ヘッダー & フッター
+ */
+.boxes-1 .panel.box-panel-head,
+.boxes-5 .panel.box-panel-head {
+	margin-bottom: 0px;
+	border-bottom: 0px;
+}
+.boxes-2 .panel.box-panel > .panel-heading,
+.boxes-4 .panel.box-panel > .panel-heading,
+.boxes-1 .panel.box-panel-head > .panel-heading,
+.boxes-5 .panel.box-panel-head > .panel-heading {
+	border-radius: 0px;
+	border-bottom: 0px;
+}

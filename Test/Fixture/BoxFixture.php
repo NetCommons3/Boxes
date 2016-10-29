@@ -2,11 +2,10 @@
 /**
  * BoxFixture
  *
-* @author Noriko Arai <arai@nii.ac.jp>
-* @author Your Name <yourname@domain.com>
-* @link http://www.netcommons.org NetCommons Project
-* @license http://www.netcommons.org/license.txt NetCommons License
-* @copyright Copyright 2014, NetCommons Project
+ * @copyright Copyright 2014, NetCommons Project
+ * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
+ * @link http://www.netcommons.org NetCommons Project
+ * @license http://www.netcommons.org/license.txt NetCommons License
  */
 
 /**
@@ -47,17 +46,110 @@ class BoxFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'container_id' => 1,
 			'type' => 1,
 			'space_id' => 1,
-			'room_id' => 1,
+			'room_id' => '2',
 			'page_id' => 1,
 			'container_type' => 1,
 			'weight' => 1,
 			'created_user' => 1,
-			'created' => '2016-10-26 05:11:11',
+			'created' => '2014-04-30 06:57:01',
 			'modified_user' => 1,
-			'modified' => '2016-10-26 05:11:11'
+			'modified' => '2014-04-30 06:57:01'
+		),
+		array(
+			'id' => 2,
+			'type' => 2,
+			'space_id' => 1,
+			'room_id' => '2',
+			'page_id' => 1,
+			'container_type' => 1,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
+		array(
+			'id' => 3,
+			'type' => 4,
+			'space_id' => 1,
+			'room_id' => '2',
+			'page_id' => 1,
+			'container_type' => 3,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
+		array(
+			'id' => 4,
+			'type' => 1,
+			'space_id' => 1,
+			'room_id' => '2',
+			'page_id' => 1,
+			'container_type' => 4,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
+		array(
+			'id' => 5,
+			'type' => 1,
+			'space_id' => 1,
+			'room_id' => '2',
+			'page_id' => 1,
+			'container_type' => 5,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
+		//page.permalink=test
+		array(
+			'id' => 6,
+			'type' => 4,
+			'space_id' => 1,
+			'room_id' => '2',
+			'page_id' => 2,
+			'container_type' => 3,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
+		//別ルーム(room_id=4)
+		array(
+			'id' => 7,
+			'type' => 4,
+			'space_id' => 1,
+			'room_id' => '5',
+			'page_id' => 3,
+			'weight' => 1,
+			'container_type' => 3,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
+		),
+		//別ルーム(room_id=5、ブロックなし)
+		array(
+			'id' => 8,
+			'type' => 4,
+			'space_id' => 1,
+			'room_id' => '6',
+			'page_id' => 4,
+			'container_type' => 3,
+			'weight' => 1,
+			'created_user' => 1,
+			'created' => '2014-04-30 06:57:01',
+			'modified_user' => 1,
+			'modified' => '2014-04-30 06:57:01'
 		),
 	);
 
