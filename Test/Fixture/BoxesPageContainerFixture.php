@@ -96,7 +96,7 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 		$this->_id = 0;
 
 		//サイト全体
-		$this->setRecord('1', '1', '1', ['1', '2', '4', '5']);
+		//$this->setRecord('1', '1', '1', ['1', '2', '4', '5']);
 		//パブリックスペース
 		$this->setRecord('2', '2', '2', ['1', '2', '4', '5']);
 		//プライベートスペース
@@ -134,7 +134,7 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 			}
 
 			$this->_weight = 0;
-			if ($containerType !== '3') {
+			if ($containerType != '3') {
 				//サイト全体
 				$result = $this->_boxes;
 				$result = Hash::extract($result, '{n}[type=1]');
