@@ -27,31 +27,6 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 	public $records = array(
 		//initでセットする
 	);
-//
-///**
-// * 生成するページIDのマックス値
-// *
-// * @var array
-// */
-//	protected $_maxPageId = 5;
-//
-///**
-// * 生成するページIDのマックス値
-// *
-// * @var array
-// */
-//	protected $_maxBoxId = 8;
-
-///**
-// * Records
-// *
-// * @var array
-// */
-//	public $records = array(
-//		array(
-//			'id' => '1', 'page_container_id' => '1', 'page_id' => '1', 'container_type' => '1', 'box_id' => '1', 'is_published' => '1', 'weight' => '1'
-//		),
-//	);
 
 /**
  * Boxデータ
@@ -96,6 +71,16 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 		require_once App::pluginPath('Boxes') . 'Config' . DS . 'Schema' . DS . 'schema.php';
 		$this->fields = (new BoxesSchema())->tables['boxes_page_containers'];
 
+		$this->setRecords();
+		parent::init();
+	}
+
+/**
+ * recordsのセット
+ *
+ * @return void
+ */
+	public function setRecords() {
 		if (! $this->_boxes) {
 			$fixture = new BoxFixture();
 			$fixture->setRecords();
@@ -120,13 +105,13 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 		$this->setRecord('4', '3', '4', ['1', '2', '4', '5']);
 
 		//ページ
-		foreach ($this->_roomId as $spaceId => $roomId) {
-			foreach ($this->_pageId[$roomId] as $pageId) {
-				$this->setRecord($spaceId, $roomId, $pageId, ['1', '2', '3', '4', '5']);
+		foreach ($this->_roomId as $spaceId => $roomIds) {
+			foreach ($roomIds as $roomId) {
+				foreach ($this->_pageId[$roomId] as $pageId) {
+					$this->setRecord($spaceId, $roomId, $pageId, ['1', '2', '3', '4', '5']);
+				}
 			}
 		}
-
-		parent::init();
 	}
 
 /**

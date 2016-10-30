@@ -111,30 +111,33 @@ class BoxFixture extends CakeTestFixture {
  */
 	public function setRecords() {
 		$id = 16;
-		foreach ($this->_roomId as $spaceId => $roomId) {
-			foreach (['1', '2', '4', '5'] as $containerType) {
-				$id++;
-				$this->records[] = array(
-					'id' => $id,
-					'type' => '3',
-					'space_id' => $spaceId,
-					'room_id' => $roomId,
-					'page_id' => null,
-					'container_type' => $containerType,
-				);
-			}
 
-			foreach ($this->_pageId[$roomId] as $pageId) {
-				foreach (['1', '2', '3', '4', '5'] as $containerType) {
+		foreach ($this->_roomId as $spaceId => $roomIds) {
+			foreach ($roomIds as $roomId) {
+				foreach (['1', '2', '4', '5'] as $containerType) {
 					$id++;
 					$this->records[] = array(
-						'id' => $id,
-						'type' => '4',
+						'id' => (string)$id,
+						'type' => '3',
 						'space_id' => $spaceId,
 						'room_id' => $roomId,
-						'page_id' => $pageId,
+						'page_id' => null,
 						'container_type' => $containerType,
 					);
+				}
+
+				foreach ($this->_pageId[$roomId] as $pageId) {
+					foreach (['1', '2', '3', '4', '5'] as $containerType) {
+						$id++;
+						$this->records[] = array(
+							'id' => (string)$id,
+							'type' => '4',
+							'space_id' => $spaceId,
+							'room_id' => $roomId,
+							'page_id' => $pageId,
+							'container_type' => $containerType,
+						);
+					}
 				}
 			}
 		}
