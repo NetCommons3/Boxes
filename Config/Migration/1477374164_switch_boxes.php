@@ -138,16 +138,17 @@ class SwitchBoxes extends NetCommonsMigration {
  */
 	public function before($direction) {
 		$Plugin = ClassRegistry::init('PluginManager.Plugin');
-		if (! $Plugin->runMigration('Pages')) {
+
+		if (! $Plugin->runMigration('Pages', $this->connection)) {
 			return false;
 		}
-		if (! $Plugin->runMigration('Containers')) {
+		if (! $Plugin->runMigration('Containers', $this->connection)) {
 			return false;
 		}
-		if (! $Plugin->runMigration('Frames')) {
+		if (! $Plugin->runMigration('Frames', $this->connection)) {
 			return false;
 		}
-		if (! $Plugin->runMigration('Rooms')) {
+		if (! $Plugin->runMigration('Rooms', $this->connection)) {
 			return false;
 		}
 		if ($direction === 'down') {
@@ -169,7 +170,7 @@ class SwitchBoxes extends NetCommonsMigration {
  * @throws InternalErrorException
  */
 	public function after($direction) {
-		$db = ConnectionManager::getDataSource('master');
+		$db = ConnectionManager::getDataSource($this->connection);
 		$db->begin();
 		try {
 			if ($direction === 'up') {
