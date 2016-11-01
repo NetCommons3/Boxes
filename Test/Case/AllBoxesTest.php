@@ -24,7 +24,7 @@ class AllBoxesTest extends CakeTestSuite {
  */
 	public static function suite() {
 		$suite = new CakeTestSuite();
-		$suite->addTestDirectoryRecursive(dirname(__FILE__));
+		//$suite->addTestDirectoryRecursive(dirname(__FILE__));
 		return $suite;
 	}
 }
