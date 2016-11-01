@@ -16,7 +16,7 @@ App::uses('Container', 'Containers.Model');
 	<?php
 		if (! Current::isSettingMode()) {
 			foreach ($boxes as $box) {
-				echo $this->PageLayout->renderFrames($containerType, $box);
+				echo $this->PageLayout->renderFrames($box);
 			}
 		} elseif ($containerType === Container::TYPE_HEADER || $containerType === Container::TYPE_FOOTER) {
 			echo $this->element('Boxes.render_boxes_header_footer', array('boxes' => $boxes, 'containerType' => $containerType));

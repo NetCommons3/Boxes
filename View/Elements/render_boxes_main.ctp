@@ -11,7 +11,7 @@
 ?>
 <?php foreach ($boxes as $box) : ?>
 	<div id="box-<?php echo $box['BoxesPageContainer']['box_id']; ?>">
-		<?php echo $this->PageLayout->renderAddPlugin($containerType, $box); ?>
-		<?php echo $this->PageLayout->renderFrames($containerType, $box); ?>
+		<?php echo $this->PageLayout->renderAddPlugin($box); ?>
+		<?php echo $this->PageLayout->renderFrames($box); ?>
 	</div>
 <?php endforeach;
