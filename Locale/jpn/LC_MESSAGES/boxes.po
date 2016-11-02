@@ -60,3 +60,6 @@ msgstr "表示"
 
 msgid "Non display"
 msgstr "非表示"
+
+msgid "Not found plugin."
+msgstr "プラグインが配置されていません。"

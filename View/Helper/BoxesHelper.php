@@ -70,7 +70,7 @@ class BoxesHelper extends AppHelper {
  */
 	public function renderAddPlugin($box) {
 		$containerType = $box['BoxesPageContainer']['container_type'];
-		if ($this->hasBoxSetting($box)) {
+		if ($this->hasAddPlugin($box)) {
 			return $this->_View->element('Frames.add_plugin', array(
 				'boxId' => $box['Box']['id'],
 				'roomId' => $box['Box']['room_id'],
@@ -79,6 +79,16 @@ class BoxesHelper extends AppHelper {
 		} else {
 			return '';
 		}
+	}
+
+/**
+ * プラグイン追加のHTMLを出力
+ *
+ * @param array $box Boxデータ
+ * @return string
+ */
+	public function hasAddPlugin($box) {
+		return Current::isSettingMode() && Current::permission('page_editable', $box['Box']['room_id']);
 	}
 
 /**
@@ -99,6 +109,10 @@ class BoxesHelper extends AppHelper {
 			$html .= $this->_View->element('Frames.render_frames', array(
 				'box' => $box, 'containerType' => $containerType,
 			));
+			$html .= '</div>';
+		} elseif ($this->hasBox($box)) {
+			$html .= '<div>';
+			$html .= __d('boxes', 'Not found plugin.');
 			$html .= '</div>';
 		}
 		return $html;
@@ -219,8 +233,6 @@ class BoxesHelper extends AppHelper {
 		if (! Current::isSettingMode()) {
 			return false;
 		} elseif ($containerType === Container::TYPE_MAJOR || $containerType === Container::TYPE_MINOR) {
-			//var_dump(Current::permission('page_editable', $box['Box']['room_id']));
-			//var_dump($box['Box']['room_id']);
 			return Current::permission('page_editable', $box['Box']['room_id']);
 		} else {
 			return Current::permission('page_editable');

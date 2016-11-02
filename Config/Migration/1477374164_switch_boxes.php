@@ -269,7 +269,7 @@ class SwitchBoxes extends NetCommonsMigration {
 			$wheres = array(
 				array('type' => Box::TYPE_WITH_SITE, 'where' => 'id = 1'),
 				array('type' => Box::TYPE_WITH_SPACE, 'where' => 'id IN (2, 3, 4)'),
-				array('type' => Box::TYPE_WITH_ROOM, 'where' => 'id NOT IN (1, 3, 4)'),
+				array('type' => Box::TYPE_WITH_ROOM, 'where' => 'id NOT IN (1)'),
 			);
 			foreach ($wheres as $where) {
 				$sql = 'INSERT INTO ' . $Box->tablePrefix . $Box->table . '(' . $schemaColumns . ')' .
