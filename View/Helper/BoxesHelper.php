@@ -94,9 +94,6 @@ class BoxesHelper extends AppHelper {
 /**
  * ボックス内のFrameのHTMLを出力
  *
- * @param string $containerType コンテナータイプ
- *		Container::TYPE_HEADER or Container::TYPE_MAJOR or Container::TYPE_MAIN or
- *		Container::TYPE_MINOR or Container::TYPE_FOOTER
  * @param array $box Boxデータ
  * @return string
  */
