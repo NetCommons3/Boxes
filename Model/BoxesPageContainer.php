@@ -30,20 +30,20 @@ class BoxesPageContainer extends BoxesAppModel {
  * @var array
  */
 	public $belongsTo = array(
-		//'PageContainer' => array(
-		//	'className' => 'PageContainer',
-		//	'foreignKey' => 'page_container_id',
-		//	'conditions' => '',
-		//	'fields' => '',
-		//	'order' => ''
-		//),
-		//'Page' => array(
-		//	'className' => 'Page',
-		//	'foreignKey' => 'page_id',
-		//	'conditions' => '',
-		//	'fields' => '',
-		//	'order' => ''
-		//),
+		'PageContainer' => array(
+			'className' => 'PageContainer',
+			'foreignKey' => 'page_container_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Page' => array(
+			'className' => 'Page',
+			'foreignKey' => 'page_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Box' => array(
 			'className' => 'Box',
 			'foreignKey' => 'box_id',
