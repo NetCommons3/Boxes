@@ -14,141 +14,133 @@
 class BoxFixture extends CakeTestFixture {
 
 /**
- * Fields
- *
- * @var array
- */
-	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
-		'container_id' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'type' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'space_id' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'room_id' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'page_id' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'weight' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'created_user' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'modified_user' => array('type' => 'integer', 'null' => true, 'default' => null),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-	);
-
-/**
  * Records
  *
  * @var array
  */
 	public $records = array(
 		array(
-			'id' => 1,
-			'container_id' => 1,
-			'type' => 1,
-			'space_id' => 1,
-			'room_id' => 1,
-			'page_id' => 1,
-			'weight' => 1,
-			'created_user' => 1,
-			'created' => '2014-04-30 06:57:01',
-			'modified_user' => 1,
-			'modified' => '2014-04-30 06:57:01'
+			'id' => '1', 'type' => '1', 'space_id' => '1', 'room_id' => '1', 'page_id' => null, 'container_type' => '1',
 		),
 		array(
-			'id' => 2,
-			'container_id' => 2,
-			'type' => 1,
-			'space_id' => 1,
-			'room_id' => 1,
-			'page_id' => 1,
-			'weight' => 1,
-			'created_user' => 1,
-			'created' => '2014-04-30 06:57:01',
-			'modified_user' => 1,
-			'modified' => '2014-04-30 06:57:01'
+			'id' => '2', 'type' => '1', 'space_id' => '1', 'room_id' => '1', 'page_id' => null, 'container_type' => '2',
 		),
 		array(
-			'id' => 3,
-			'container_id' => 3,
-			'type' => 4,
-			'space_id' => 1,
-			'room_id' => 1,
-			'page_id' => 1,
-			'weight' => 1,
-			'created_user' => 1,
-			'created' => '2014-04-30 06:57:01',
-			'modified_user' => 1,
-			'modified' => '2014-04-30 06:57:01'
+			'id' => '3', 'type' => '1', 'space_id' => '1', 'room_id' => '1', 'page_id' => null, 'container_type' => '4',
 		),
 		array(
-			'id' => 4,
-			'container_id' => 4,
-			'type' => 1,
-			'space_id' => 1,
-			'room_id' => 1,
-			'page_id' => 1,
-			'weight' => 1,
-			'created_user' => 1,
-			'created' => '2014-04-30 06:57:01',
-			'modified_user' => 1,
-			'modified' => '2014-04-30 06:57:01'
+			'id' => '4', 'type' => '1', 'space_id' => '1', 'room_id' => '1', 'page_id' => null, 'container_type' => '5',
 		),
 		array(
-			'id' => 5,
-			'container_id' => 5,
-			'type' => 1,
-			'space_id' => 1,
-			'room_id' => 1,
-			'page_id' => 1,
-			'weight' => 1,
-			'created_user' => 1,
-			'created' => '2014-04-30 06:57:01',
-			'modified_user' => 1,
-			'modified' => '2014-04-30 06:57:01'
+			'id' => '5', 'type' => '2', 'space_id' => '2', 'room_id' => '2', 'page_id' => null, 'container_type' => '1',
 		),
-		//page.permalink=test
 		array(
-			'id' => 6,
-			'container_id' => 6,
-			'type' => 4,
-			'space_id' => 1,
-			'room_id' => 1,
-			'page_id' => 2,
-			'weight' => 1,
-			'created_user' => 1,
-			'created' => '2014-04-30 06:57:01',
-			'modified_user' => 1,
-			'modified' => '2014-04-30 06:57:01'
+			'id' => '6', 'type' => '2', 'space_id' => '3', 'room_id' => '3', 'page_id' => null, 'container_type' => '1',
 		),
-		//別ルーム(room_id=4)
 		array(
-			'id' => 7,
-			'container_id' => 7,
-			'type' => 4,
-			'space_id' => 1,
-			'room_id' => 4,
-			'page_id' => 3,
-			'weight' => 1,
-			'created_user' => 1,
-			'created' => '2014-04-30 06:57:01',
-			'modified_user' => 1,
-			'modified' => '2014-04-30 06:57:01'
+			'id' => '7', 'type' => '2', 'space_id' => '4', 'room_id' => '4', 'page_id' => null, 'container_type' => '1',
 		),
-		//別ルーム(room_id=5、ブロックなし)
 		array(
-			'id' => 8,
-			'container_id' => 8,
-			'type' => 4,
-			'space_id' => 1,
-			'room_id' => 5,
-			'page_id' => 4,
-			'weight' => 1,
-			'created_user' => 1,
-			'created' => '2014-04-30 06:57:01',
-			'modified_user' => 1,
-			'modified' => '2014-04-30 06:57:01'
+			'id' => '8', 'type' => '2', 'space_id' => '2', 'room_id' => '2', 'page_id' => null, 'container_type' => '2',
 		),
+		array(
+			'id' => '9', 'type' => '2', 'space_id' => '3', 'room_id' => '3', 'page_id' => null, 'container_type' => '2',
+		),
+		array(
+			'id' => '10', 'type' => '2', 'space_id' => '4', 'room_id' => '4', 'page_id' => null, 'container_type' => '2',
+		),
+		array(
+			'id' => '11', 'type' => '2', 'space_id' => '2', 'room_id' => '2', 'page_id' => null, 'container_type' => '4',
+		),
+		array(
+			'id' => '12', 'type' => '2', 'space_id' => '3', 'room_id' => '3', 'page_id' => null, 'container_type' => '4',
+		),
+		array(
+			'id' => '13', 'type' => '2', 'space_id' => '4', 'room_id' => '4', 'page_id' => null, 'container_type' => '4',
+		),
+		array(
+			'id' => '14', 'type' => '2', 'space_id' => '2', 'room_id' => '2', 'page_id' => null, 'container_type' => '5',
+		),
+		array(
+			'id' => '15', 'type' => '2', 'space_id' => '3', 'room_id' => '3', 'page_id' => null, 'container_type' => '5',
+		),
+		array(
+			'id' => '16', 'type' => '2', 'space_id' => '4', 'room_id' => '4', 'page_id' => null, 'container_type' => '5',
+		),
+
+		//ルーム、ページのBoxはinit()でセットする
 	);
+
+/**
+ * ルームID
+ *
+ * @var array
+ */
+	protected $_roomId = array(
+		'2' => array('2', '5', '6')
+	);
+
+/**
+ * ページID
+ *
+ * @var array
+ */
+	protected $_pageId = array(
+		'2' => array('1', '2', '3'),
+		'5' => array('4'),
+		'6' => array('5'),
+	);
+
+/**
+ * Initialize the fixture.
+ *
+ * @return void
+ */
+	public function init() {
+		require_once App::pluginPath('Boxes') . 'Config' . DS . 'Schema' . DS . 'schema.php';
+		$this->fields = (new BoxesSchema())->tables['boxes'];
+
+		$this->setRecords();
+		parent::init();
+	}
+
+/**
+ * recordsのセット
+ *
+ * @return void
+ */
+	public function setRecords() {
+		$id = 16;
+
+		foreach ($this->_roomId as $spaceId => $roomIds) {
+			foreach ($roomIds as $roomId) {
+				foreach (['1', '2', '4', '5'] as $containerType) {
+					$id++;
+					$this->records[] = array(
+						'id' => (string)$id,
+						'type' => '3',
+						'space_id' => $spaceId,
+						'room_id' => $roomId,
+						'page_id' => null,
+						'container_type' => $containerType,
+					);
+				}
+
+				foreach ($this->_pageId[$roomId] as $pageId) {
+					foreach (['1', '2', '3', '4', '5'] as $containerType) {
+						$id++;
+						$this->records[] = array(
+							'id' => (string)$id,
+							'type' => '4',
+							'space_id' => $spaceId,
+							'room_id' => $roomId,
+							'page_id' => $pageId,
+							'container_type' => $containerType,
+						);
+					}
+				}
+			}
+		}
+	}
 
 }

@@ -23,10 +23,10 @@ class TestBoxesController extends AppController {
  *
  * @var array
  */
-	public $uses = array(
-		'Boxes.Box',
-		'Containers.Container',
-	);
+	//public $uses = array(
+	//	'Boxes.Box',
+	//	'Containers.Container',
+	//);
 
 /**
  * index method
@@ -35,24 +35,24 @@ class TestBoxesController extends AppController {
  * @throws NotFoundException
  * @return void
  */
-	public function index($id = null) {
-		Current::$current['Language']['id'] = '2';
-
-		$box = $this->Box->getBoxWithFrame($id);
-
-		$box['Box']['Frame'] = $box['Frame'];
-		$box['Box']['BoxesPage'] = $box['Page'][0]['BoxesPage'];
-		$boxes[$box['Box']['id']] = $box['Box'];
-
-		$this->set('boxes', $boxes);
-
-		$container = $this->Container->findById($box['Box']['container_id']);
-		$this->set('containerType', $container['Container']['type']);
-
-		$this->set('page', Hash::merge($box, $container));
-		$this->set('modal', null);
-
-		$this->helpers[] = 'Pages.PageLayout';
-	}
+	//public function index($id = null) {
+	//	Current::$current['Language']['id'] = '2';
+	//
+	//	$box = $this->Box->getBoxWithFrame($id);
+	//
+	//	$box['Box']['Frame'] = $box['Frame'];
+	//	//$box['Box']['BoxesPage'] = $box['Page'][0]['BoxesPage'];
+	//	$boxes[$box['Box']['id']] = $box['Box'];
+	//
+	//	$this->set('boxes', $boxes);
+	//
+	//	$container = $this->Container->findById($box['Box']['container_id']);
+	//	$this->set('containerType', $container['Container']['type']);
+	//
+	//	$this->set('page', Hash::merge($box, $container));
+	//	$this->set('modal', null);
+	//
+	//	$this->helpers[] = 'Pages.PageLayout';
+	//}
 
 }

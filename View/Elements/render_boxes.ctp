@@ -7,23 +7,23 @@
  * @link http://www.netcommons.org NetCommons Project
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
+
+App::uses('Current', 'NetCommons.Utility');
+App::uses('Container', 'Containers.Model');
 ?>
 
-<?php foreach ($boxes as $boxId => $box): ?>
-	<?php if (Current::isSettingMode()) : ?>
-		<?php echo $this->element('Frames.add_plugin', array(
-				'boxId' => $boxId,
-				'roomId' => $box['room_id'],
-				'containerType' => $containerType,
-			)); ?>
-	<?php endif; ?>
-
-	<?php if (! empty($box['Frame'])) : ?>
-		<div class="box-site">
-			<?php echo $this->element('Frames.render_frames', array(
-					'frames' => $box['Frame'],
-					'containerType' => $containerType,
-				)); ?>
-		</div>
-	<?php endif; ?>
-<?php endforeach;
+<div class="boxes-<?php echo $containerType; ?>">
+	<?php
+		if (! Current::isSettingMode()) {
+			foreach ($boxes as $box) {
+				echo $this->PageLayout->renderFrames($box);
+			}
+		} elseif ($containerType === Container::TYPE_HEADER || $containerType === Container::TYPE_FOOTER) {
+			echo $this->element('Boxes.render_boxes_header_footer', array('boxes' => $boxes, 'containerType' => $containerType));
+		} elseif ($containerType === Container::TYPE_MAIN) {
+			echo $this->element('Boxes.render_boxes_main', array('boxes' => $boxes, 'containerType' => $containerType));
+		} else {
+			echo $this->element('Boxes.render_boxes_major_minor', array('boxes' => $boxes, 'containerType' => $containerType));
+		}
+	?>
+</div>

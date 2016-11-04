@@ -2,12 +2,9 @@
 /**
  * Box Model
  *
- * @property Container $Container
  * @property Space $Space
  * @property Room $Room
- * @property Page $Page
  * @property Frame $Frame
- * @property Page $Page
  *
  * @copyright Copyright 2014, NetCommons Project
  * @author Kohei Teraguchi <kteraguchi@commonsnet.org>
@@ -16,9 +13,13 @@
  */
 
 App::uses('BoxesAppModel', 'Boxes.Model');
+App::uses('Current', 'NetCommons.Utility');
 
 /**
- * Summary for Box Model
+ * Box Model
+ *
+ * @author Shohei Nakajima <nakajimashouhei@gmail.com>
+ * @package NetCommons\Boxes\Model
  */
 class Box extends BoxesAppModel {
 
@@ -42,13 +43,6 @@ class Box extends BoxesAppModel {
  */
 	const TYPE_WITH_PAGE = '4';
 
-/**
- * Default behaviors
- *
- * @var array
- */
-	public $actsAs = array('Containable');
-
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
@@ -57,13 +51,6 @@ class Box extends BoxesAppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Container' => array(
-			'className' => 'Containers.Container',
-			'foreignKey' => 'container_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 		'Space' => array(
 			'className' => 'Rooms.Space',
 			'foreignKey' => 'space_id',
@@ -92,7 +79,7 @@ class Box extends BoxesAppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => array('Frame.id DESC'),
+			'order' => array('Frame.weight' => 'asc'),
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
@@ -102,122 +89,65 @@ class Box extends BoxesAppModel {
 	);
 
 /**
- * hasAndBelongsToMany associations
+ * Frame付きのボックスを取得
  *
- * @var array
+ * @param string $pageContainerId BoxesPageContainerのID
+ * @return array
  */
-	public $hasAndBelongsToMany = array(
-		'Page' => array(
-			'className' => 'Pages.Page',
-			'joinTable' => 'boxes_pages',
-			'foreignKey' => 'box_id',
-			'associationForeignKey' => 'page_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		)
-	);
-
-/**
- * Constructor. Binds the model's database table to the object.
- *
- * @param bool|int|string|array $id Set this ID for this model on startup,
- * can also be an array of options, see above.
- * @param string $table Name of database table to use.
- * @param string $ds DataSource connection name.
- * @see Model::__construct()
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- */
-	public function __construct($id = false, $table = null, $ds = null) {
-		parent::__construct($id, $table, $ds);
+	public function getBoxWithFrame($pageContainerId) {
 		$this->loadModels([
-			'BoxesPage' => 'Boxes.BoxesPage',
+			'BoxesPageContainer' => 'Boxes.BoxesPageContainer',
+			'Frame' => 'Frames.Frame',
 		]);
-	}
 
-/**
- * Get box with frame
- *
- * @param string $id Box ID
- * @return array
- */
-	public function getBoxWithFrame($id) {
-		$query = array(
-			'conditions' => array(
-				'Box.id' => $id,
-			),
-			'contain' => array(
-				'Page' => array(
+		$this->BoxesPageContainer->bindModel(array(
+			'belongsTo' => array(
+				'Room' => array(
+					'className' => 'Rooms.Room',
+					//'fields' => array('id', 'name'),
+					'foreignKey' => false,
+					'type' => 'LEFT',
 					'conditions' => array(
-						// It must check settingmode and page_id
-						'BoxesPage.is_published' => true
-					)
+						'Room.id' . ' = ' . 'Box.room_id',
+					),
 				),
-				'Frame' => $this->Frame->getContainableQuery()
+				'RoomsLanguage' => array(
+					'className' => 'Rooms.RoomsLanguage',
+					'fields' => array('id', 'name'),
+					'foreignKey' => false,
+					'type' => 'LEFT',
+					'conditions' => array(
+						'RoomsLanguage.room_id' . ' = ' . 'Box.room_id',
+						'RoomsLanguage.language_id' => Current::read('Language.id', '0'),
+					),
+				),
 			)
-		);
+		), false);
 
-		return $this->find('first', $query);
-	}
+		$this->BoxesPageContainer->unbindModel(array(
+			'belongsTo' => array(
+				'Page', 'PageContainer'
+			)
+		), true);
 
-/**
- * Get query option for containable behavior with frame
- *
- * @return array
- */
-	private function __getContainableQuery() {
 		$query = array(
-			'order' => array(
-				'Box.weight'
-			),
-			'Frame' => $this->Frame->getContainableQuery()
-		);
-
-		return $query;
-	}
-
-/**
- * Get condition of query option for containable behavior
- *
- * @return array
- */
-	private function __getConditionsQuery() {
-		$conditions = array(
+			'recursive' => 0,
 			'conditions' => array(
-				// It must check settingmode and page_id
-				'BoxesPage.is_published' => true
-			)
+				$this->BoxesPageContainer->alias . '.page_container_id' => $pageContainerId,
+			),
+			'order' => $this->BoxesPageContainer->alias . '.weight',
 		);
+		if (! Current::isSettingMode()) {
+			$query['conditions'][$this->BoxesPageContainer->alias . '.is_published'] = true;
+		}
+		$boxes = $this->BoxesPageContainer->find('all', $query);
 
-		return $conditions;
-	}
+		foreach ($boxes as $i => $box) {
+			$box['Frame'] = $this->Frame->getFrameByBox($box['Box']['id']);
+			$boxes[$i] = $box;
+		}
 
-/**
- * Get query option for containable behavior with frame
- *
- * @return array
- */
-	public function getContainableQueryAssociatedPage() {
-		$query = $this->__getContainableQuery();
-		$query['Page'] = $this->__getConditionsQuery();
-
-		return $query;
-	}
-
-/**
- * Get query option for containable behavior with frame
- *
- * @return array
- */
-	public function getContainableQueryNotAssociatedPage() {
-		$query = $this->__getContainableQuery();
-		$conditions = $this->__getConditionsQuery();
-
-		return array_merge($query, $conditions);
+		return $boxes;
 	}
 
 }
