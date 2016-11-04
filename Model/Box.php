@@ -124,6 +124,12 @@ class Box extends BoxesAppModel {
 			)
 		), false);
 
+		$this->BoxesPageContainer->unbindModel(array(
+			'belongsTo' => array(
+				'Page', 'PageContainer'
+			)
+		), true);
+
 		$query = array(
 			'recursive' => 0,
 			'conditions' => array(
