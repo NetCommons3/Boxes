@@ -31,21 +31,21 @@ class BoxesPageContainer extends BoxesAppModel {
  */
 	public $belongsTo = array(
 		'PageContainer' => array(
-			'className' => 'PageContainer',
+			'className' => 'Pages.PageContainer',
 			'foreignKey' => 'page_container_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Page' => array(
-			'className' => 'Page',
+			'className' => 'Pages.Page',
 			'foreignKey' => 'page_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Box' => array(
-			'className' => 'Box',
+			'className' => 'Boxes.Box',
 			'foreignKey' => 'box_id',
 			'conditions' => '',
 			'fields' => '',
