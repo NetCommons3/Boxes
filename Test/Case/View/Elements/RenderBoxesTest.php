@@ -61,8 +61,11 @@ class BoxesViewElementsRenderBoxesTest extends NetCommonsControllerTestCase {
 		$pattern = '/' . preg_quote('View/Elements/render_boxes', '/') . '/';
 		$this->assertRegExp($pattern, $this->view);
 
-		//TODO:必要に応じてassert追加する
-		var_export($this->view);
+		$pattern = '/<section.*?' . preg_quote('class="frame panel panel-default nc-content plugin-test-boxes">', '/') . '/';
+		$this->assertRegExp($pattern, $this->view);
+
+		$pattern = '/' . preg_quote('test_boxes/test_boxes/index', '/') . '/';
+		$this->assertRegExp($pattern, $this->view);
 	}
 
 }

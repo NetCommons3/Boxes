@@ -69,7 +69,7 @@ class TestViewElementsRenderBoxesController extends AppController {
 					'language_id' => '2',
 					'room_id' => '2',
 					'box_id' => '1',
-					'plugin_key' => 'test_pages',
+					'plugin_key' => 'test_boxes',
 					'block_id' => '2',
 					'key' => 'frame_header',
 					'name' => 'Test frame header',
