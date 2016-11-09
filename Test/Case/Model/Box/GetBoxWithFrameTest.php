@@ -20,13 +20,6 @@ App::uses('BoxesGetTestCase', 'Boxes.TestSuite');
 class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
 
 /**
- * Plugin name
- *
- * @var string
- */
-	public $plugin = 'boxes';
-
-/**
  * Model name
  *
  * @var string
