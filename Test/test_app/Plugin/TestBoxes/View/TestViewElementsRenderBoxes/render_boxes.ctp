@@ -11,4 +11,6 @@
 
 ?>
 
-test_boxes/test_boxes/index
+View/Elements/render_boxes
+
+<?php echo $this->element('Boxes.render_boxes');

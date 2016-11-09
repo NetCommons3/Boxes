@@ -94,6 +94,41 @@ class BoxesHelper extends AppHelper {
 /**
  * ボックス内のFrameのHTMLを出力
  *
+ * @param int $containerType コンテナータイプ
+ * @param array $boxes Boxデータ
+ * @return string
+ */
+	public function renderBoxes($containerType, $boxes) {
+		$html = '';
+
+		if (! Current::isSettingMode()) {
+			foreach ($boxes as $box) {
+				$html .= $this->renderFrames($box);
+			}
+		} elseif ($containerType === Container::TYPE_HEADER ||
+				$containerType === Container::TYPE_FOOTER) {
+			$html .= $this->_View->element(
+				'Boxes.render_boxes_header_footer',
+				array('boxes' => $boxes, 'containerType' => $containerType)
+			);
+		} elseif ($containerType === Container::TYPE_MAIN) {
+			$html .= $this->_View->element(
+				'Boxes.render_boxes_main',
+				array('boxes' => $boxes, 'containerType' => $containerType)
+			);
+		} else {
+			$html .= $this->_View->element(
+				'Boxes.render_boxes_major_minor',
+				array('boxes' => $boxes, 'containerType' => $containerType)
+			);
+		}
+
+		return $html;
+	}
+
+/**
+ * ボックス内のFrameのHTMLを出力
+ *
  * @param array $box Boxデータ
  * @return string
  */
