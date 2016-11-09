@@ -94,6 +94,7 @@ class BoxesHelper extends AppHelper {
 /**
  * ボックス内のFrameのHTMLを出力
  *
+ * @param int $containerType コンテナータイプ
  * @param array $boxes Boxデータ
  * @return string
  */
@@ -104,7 +105,8 @@ class BoxesHelper extends AppHelper {
 			foreach ($boxes as $box) {
 				$html .= $this->renderFrames($box);
 			}
-		} elseif ($containerType === Container::TYPE_HEADER || $containerType === Container::TYPE_FOOTER) {
+		} elseif ($containerType === Container::TYPE_HEADER ||
+				$containerType === Container::TYPE_FOOTER) {
 			$html .= $this->_View->element(
 				'Boxes.render_boxes_header_footer',
 				array('boxes' => $boxes, 'containerType' => $containerType)
