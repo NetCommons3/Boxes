@@ -259,12 +259,16 @@ class BoxesHelper extends AppHelper {
 			);
 		} else {
 			if ($box['BoxesPageContainer']['is_published']) {
-				$html .= $this->NetCommonsForm->hidden('BoxesPageContainer.is_published', array('value' => '0'));
+				$html .= $this->NetCommonsForm->hidden(
+					'BoxesPageContainer.is_published', array('value' => '0')
+				);
 				$buttonIcon = 'glyphicon-eye-open';
 				$active = ' active';
 				$label = __d('boxes', 'Display');
 			} else {
-				$html .= $this->NetCommonsForm->hidden('BoxesPageContainer.is_published', array('value' => '1'));
+				$html .= $this->NetCommonsForm->hidden(
+					'BoxesPageContainer.is_published', array('value' => '1')
+				);
 				$buttonIcon = 'glyphicon-minus';
 				$active = '';
 				$label = __d('boxes', 'Non display');
