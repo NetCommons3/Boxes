@@ -196,9 +196,10 @@ class BoxesHelper extends AppHelper {
  * 表示・非表示の変更HTMLを出力する
  *
  * @param array $box Boxデータ
+ * @param string $title タイトル
  * @return string
  */
-	public function displayBoxSetting($box, $title = null) {
+	public function displayBoxSetting($box, $title) {
 		$html = '';
 		$containerType = $box['BoxesPageContainer']['container_type'];
 
