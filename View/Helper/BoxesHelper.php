@@ -168,21 +168,25 @@ class BoxesHelper extends AppHelper {
 			$containerTitle = '';
 		}
 
-		$html .= $this->displayBoxSetting($box);
-
 		if ($box['Box']['type'] === Box::TYPE_WITH_SITE) {
-			$html .= __d('boxes', 'Common area of the whole site%s', $containerTitle);
+			$title = __d('boxes', 'Common area of the whole site%s', $containerTitle);
 		} elseif ($box['Box']['type'] === Box::TYPE_WITH_SPACE) {
-			$html .= __d(
+			$title = __d(
 				'boxes',
 				'Common area of the whole %s space%s',
 				h($box['RoomsLanguage']['name']),
 				$containerTitle
 			);
 		} elseif ($box['Box']['type'] === Box::TYPE_WITH_ROOM) {
-			$html .= __d('boxes', 'Common area of the whole room%s', $containerTitle);
+			$title = __d('boxes', 'Common area of the whole room%s', $containerTitle);
 		} else {
-			$html .= __d('boxes', 'Area of this page only%s', $containerTitle);
+			$title = __d('boxes', 'Area of this page only%s', $containerTitle);
+		}
+
+		if ($this->hasBoxSetting($box)) {
+			$html .= $this->displayBoxSetting($box, $title);
+		} else {
+			$html .= $title;
 		}
 
 		return $html;
@@ -192,25 +196,34 @@ class BoxesHelper extends AppHelper {
  * 表示・非表示の変更HTMLを出力する
  *
  * @param array $box Boxデータ
+ * @param string $title タイトル
  * @return string
  */
-	public function displayBoxSetting($box) {
+	public function displayBoxSetting($box, $title) {
 		$html = '';
+		$containerType = $box['BoxesPageContainer']['container_type'];
 
-		if (! $this->hasBoxSetting($box)) {
-			return $html;
+		if ($containerType === Container::TYPE_MAJOR || $containerType === Container::TYPE_MINOR) {
+			$classOptions = array(
+				'pull-left box-display'
+			);
+		} else {
+			$classOptions = array(
+				'box-display'
+			);
 		}
-
-		$html .= $this->NetCommonsForm->create(false, array(
+		$html .= $this->NetCommonsForm->create(null, array(
 			'id' => 'BoxForm' . $box['Box']['id'],
 			'url' => NetCommonsUrl::actionUrlAsArray(array(
 				'plugin' => 'boxes',
 				'controller' => 'boxes',
 				'action' => 'display',
-				$box['Box']['id']
+				'page_id' => Current::read('Page.id')
+				//$box['Box']['id'],
 			)),
 			'type' => 'put',
-			'class' => array('pull-left box-display'),
+			'class' => $classOptions,
+			'ng-controller' => 'BoxesController'
 		));
 
 		$html .= $this->NetCommonsForm->hidden('BoxesPageContainer.id', array(
@@ -232,25 +245,47 @@ class BoxesHelper extends AppHelper {
 			'value' => Current::read('Page.id'),
 		));
 
-		if ($box['BoxesPageContainer']['is_published']) {
-			$html .= $this->NetCommonsForm->hidden('BoxesPageContainer.is_published', array('value' => '0'));
-			$buttonIcon = 'glyphicon-eye-open';
-			$active = ' active';
-			$label = __d('boxes', 'Display');
+		if ($containerType === Container::TYPE_HEADER || $containerType === Container::TYPE_FOOTER) {
+			$html .= $this->NetCommonsForm->radio(
+				'BoxesPageContainer.is_published',
+				array('1' => $title),
+				array(
+					'id' => 'BoxesPageContainerIsPublished' . $box['Box']['id'],
+					'value' => $box['BoxesPageContainer']['is_published'],
+					'ng-click' => 'select(' . $containerType . ', ' . $box['Box']['id'] . ')',
+					'ng-disabled' => 'sending',
+					'containerType' => $box['BoxesPageContainer']['container_type']
+				)
+			);
 		} else {
-			$html .= $this->NetCommonsForm->hidden('BoxesPageContainer.is_published', array('value' => '1'));
-			$buttonIcon = 'glyphicon-minus';
-			$active = '';
-			$label = __d('boxes', 'Non display');
+			if ($box['BoxesPageContainer']['is_published']) {
+				$html .= $this->NetCommonsForm->hidden(
+					'BoxesPageContainer.is_published', array('value' => '0')
+				);
+				$buttonIcon = 'glyphicon-eye-open';
+				$active = ' active';
+				$label = __d('boxes', 'Display');
+			} else {
+				$html .= $this->NetCommonsForm->hidden(
+					'BoxesPageContainer.is_published', array('value' => '1')
+				);
+				$buttonIcon = 'glyphicon-minus';
+				$active = '';
+				$label = __d('boxes', 'Non display');
+			}
+			$html .= $this->Button->save(
+				'<span class="glyphicon ' . $buttonIcon . '" aria-hidden="true"> </span>',
+				array(
+					'class' => 'btn btn-xs btn-default' . $active,
+				)
+			);
 		}
-		$html .= $this->Button->save(
-			'<span class="glyphicon ' . $buttonIcon . '" aria-hidden="true"> </span>',
-			array(
-				'class' => 'btn btn-xs btn-default' . $active,
-			)
-		);
 
 		$html .= $this->NetCommonsForm->end();
+
+		if ($containerType === Container::TYPE_MAJOR || $containerType === Container::TYPE_MINOR) {
+			$html .= $title;
+		}
 		return $html;
 	}
 

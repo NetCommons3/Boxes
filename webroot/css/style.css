@@ -39,6 +39,10 @@ section.frame.panel:last-child {
 	margin-right: 4px;
 }
 
+.box-display .radio {
+	margin-bottom: 0px;
+}
+
 /**
  * ヘッダー & フッター
  */
@@ -47,10 +51,22 @@ section.frame.panel:last-child {
 	margin-bottom: 0px;
 	border-bottom: 0px;
 }
+/**
+ * 左右上下
+ */
 .boxes-2 .panel.box-panel > .panel-heading,
 .boxes-4 .panel.box-panel > .panel-heading,
 .boxes-1 .panel.box-panel-head > .panel-heading,
 .boxes-5 .panel.box-panel-head > .panel-heading {
 	border-radius: 0px;
 	border-bottom: 0px;
+}
+.boxes-2 .panel.box-panel > .panel-heading,
+.boxes-4 .panel.box-panel > .panel-heading,
+.boxes-1 .panel.box-panel-head > .panel-heading .radio label,
+.boxes-5 .panel.box-panel-head > .panel-heading .radio label {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
 }
