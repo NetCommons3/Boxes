@@ -26,7 +26,9 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
  *
  * @var array
  */
-	public $fixtures = array();
+	public $fixtures = array(
+		'plugin.roles.default_role_permission'
+	);
 
 /**
  * Plugin name
@@ -494,7 +496,7 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 				preg_quote('<div class="col-xs-3" id="box-1">', '/') .
 					preg_quote('<div class="panel panel-success box-panel-head">', '/') .
 						preg_quote('<div class="panel-heading cleafix">', '/') .
-							preg_quote('<form action="/setting/boxes/boxes/display/1"', '/') . '.*?' . '>' .
+							preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
 								preg_quote('<div style="display:none;">', '/') .
 									preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 								preg_quote('</div>', '/') .
@@ -504,22 +506,22 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
-								preg_quote('<input type="hidden" name="data[BoxesPageContainer][is_published]" value="0"', '/') . '.*?' . '>' .
-								preg_quote('<button name="save" class="btn btn-xs btn-default active" ng-class="{disabled: sending}" type="submit">', '/') .
-									preg_quote('<span class="glyphicon glyphicon-eye-open" aria-hidden="true">', '/') .
-									preg_quote('</span>', '/') .
-								preg_quote('</button>', '/') .
+								preg_quote('<div class="radio">', '/') .
+								preg_quote('<label class="control-label">', '/') .
+								preg_quote('<input type="radio" name="data[BoxesPageContainer][is_published]"', '/') . '.*?' . '>' .
+								preg_quote('サイト全体で共通のエリア', '/') .
+								preg_quote('</label>', '/') .
+								preg_quote('</div>', '/') .
 								preg_quote('<input type="hidden" name="data[_NetCommonsTime][user_timezone]" id="_NetCommonsTimeUserTimezone"/>', '/') .
 								preg_quote('<input type="hidden" name="data[_NetCommonsTime][convert_fields]" value=""', '/') . '.*?' . '>' .
 							preg_quote('</form>', '/') .
-							preg_quote('サイト全体で共通のエリア', '/') .
 						preg_quote('</div>', '/') .
 					preg_quote('</div>', '/') .
 				preg_quote('</div>', '/') .
 				preg_quote('<div class="col-xs-3" id="box-5">', '/') .
 					preg_quote('<div class="panel panel-default box-panel-head">', '/') .
 						preg_quote('<div class="panel-heading cleafix">', '/') .
-							preg_quote('<form action="/setting/boxes/boxes/display/5"', '/') . '.*?' . '>' .
+							preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
 								preg_quote('<div style="display:none;">', '/') .
 									preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 								preg_quote('</div>', '/') .
@@ -529,15 +531,15 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
-								preg_quote('<input type="hidden" name="data[BoxesPageContainer][is_published]" value="1"', '/') . '.*?' . '>' .
-								preg_quote('<button name="save" class="btn btn-xs btn-default" ng-class="{disabled: sending}" type="submit">', '/') .
-									preg_quote('<span class="glyphicon glyphicon-minus" aria-hidden="true">', '/') .
-									preg_quote('</span>', '/') .
-								preg_quote('</button>', '/') .
+								preg_quote('<div class="radio">', '/') .
+								preg_quote('<label class="control-label">', '/') .
+								preg_quote('<input type="radio" name="data[BoxesPageContainer][is_published]"', '/') . '.*?' . '>' .
+								preg_quote('Public共通のエリア', '/') .
+								preg_quote('</label>', '/') .
+								preg_quote('</div>', '/') .
 								preg_quote('<input type="hidden" name="data[_NetCommonsTime][user_timezone]"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[_NetCommonsTime][convert_fields]" value=""', '/') . '.*?' . '>' .
 							preg_quote('</form>', '/') .
-							preg_quote('Public共通のエリア', '/') .
 						preg_quote('</div>', '/') .
 					preg_quote('</div>', '/') .
 				preg_quote('</div>', '/') .
@@ -595,7 +597,7 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 				preg_quote('<div class="col-xs-3" id="box-1">', '/') .
 					preg_quote('<div class="panel panel-success box-panel-head">', '/') .
 						preg_quote('<div class="panel-heading cleafix">', '/') .
-							preg_quote('<form action="/setting/boxes/boxes/display/1"', '/') . '.*?' . '>' .
+							preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
 								preg_quote('<div style="display:none;">', '/') .
 									preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 								preg_quote('</div>', '/') .
@@ -605,22 +607,22 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="5"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
-								preg_quote('<input type="hidden" name="data[BoxesPageContainer][is_published]" value="0"', '/') . '.*?' . '>' .
-								preg_quote('<button name="save" class="btn btn-xs btn-default active" ng-class="{disabled: sending}" type="submit">', '/') .
-									preg_quote('<span class="glyphicon glyphicon-eye-open" aria-hidden="true">', '/') .
-									preg_quote('</span>', '/') .
-								preg_quote('</button>', '/') .
+								preg_quote('<div class="radio">', '/') .
+								preg_quote('<label class="control-label">', '/') .
+								preg_quote('<input type="radio" name="data[BoxesPageContainer][is_published]"', '/') . '.*?' . '>' .
+								preg_quote('サイト全体で共通のエリア', '/') .
+								preg_quote('</label>', '/') .
+								preg_quote('</div>', '/') .
 								preg_quote('<input type="hidden" name="data[_NetCommonsTime][user_timezone]" id="_NetCommonsTimeUserTimezone"/>', '/') .
 								preg_quote('<input type="hidden" name="data[_NetCommonsTime][convert_fields]" value=""', '/') . '.*?' . '>' .
 							preg_quote('</form>', '/') .
-							preg_quote('サイト全体で共通のエリア', '/') .
 						preg_quote('</div>', '/') .
 					preg_quote('</div>', '/') .
 				preg_quote('</div>', '/') .
 				preg_quote('<div class="col-xs-3" id="box-5">', '/') .
 					preg_quote('<div class="panel panel-default box-panel-head">', '/') .
 						preg_quote('<div class="panel-heading cleafix">', '/') .
-							preg_quote('<form action="/setting/boxes/boxes/display/5"', '/') . '.*?' . '>' .
+							preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
 								preg_quote('<div style="display:none;">', '/') .
 									preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 								preg_quote('</div>', '/') .
@@ -630,15 +632,15 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="5"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
-								preg_quote('<input type="hidden" name="data[BoxesPageContainer][is_published]" value="1"', '/') . '.*?' . '>' .
-								preg_quote('<button name="save" class="btn btn-xs btn-default" ng-class="{disabled: sending}" type="submit">', '/') .
-									preg_quote('<span class="glyphicon glyphicon-minus" aria-hidden="true">', '/') .
-									preg_quote('</span>', '/') .
-								preg_quote('</button>', '/') .
+								preg_quote('<div class="radio">', '/') .
+								preg_quote('<label class="control-label">', '/') .
+								preg_quote('<input type="radio" name="data[BoxesPageContainer][is_published]"', '/') . '.*?' . '>' .
+								preg_quote('Public共通のエリア', '/') .
+								preg_quote('</label>', '/') .
+								preg_quote('</div>', '/') .
 								preg_quote('<input type="hidden" name="data[_NetCommonsTime][user_timezone]"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[_NetCommonsTime][convert_fields]" value=""', '/') . '.*?' . '>' .
 							preg_quote('</form>', '/') .
-							preg_quote('Public共通のエリア', '/') .
 						preg_quote('</div>', '/') .
 					preg_quote('</div>', '/') .
 				preg_quote('</div>', '/') .
@@ -740,7 +742,7 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 		$pattern =
 			preg_quote('<div class="panel panel-success box-panel" id="box-1">', '/') .
 				preg_quote('<div class="panel-heading cleafix">', '/') .
-					preg_quote('<form action="/setting/boxes/boxes/display/1"', '/') . '.*?' . '>' .
+					preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
 						preg_quote('<div style="display:none;">', '/') .
 							preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 						preg_quote('</div>', '/') .
@@ -785,7 +787,7 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 			preg_quote('</div>', '/') .
 			preg_quote('<div class="panel panel-default box-panel" id="box-5">', '/') .
 				preg_quote('<div class="panel-heading cleafix">', '/') .
-					preg_quote('<form action="/setting/boxes/boxes/display/5"', '/') . '.*?' . '>' .
+					preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
 						preg_quote('<div style="display:none;">', '/') .
 							preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 						preg_quote('</div>', '/') .
@@ -838,7 +840,7 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 		$pattern =
 			preg_quote('<div class="panel panel-success box-panel" id="box-1">', '/') .
 				preg_quote('<div class="panel-heading cleafix">', '/') .
-					preg_quote('<form action="/setting/boxes/boxes/display/1"', '/') . '.*?' . '>' .
+					preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
 						preg_quote('<div style="display:none;">', '/') .
 							preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 						preg_quote('</div>', '/') .
@@ -883,7 +885,7 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 			preg_quote('</div>', '/') .
 			preg_quote('<div class="panel panel-default box-panel" id="box-5">', '/') .
 				preg_quote('<div class="panel-heading cleafix">', '/') .
-					preg_quote('<form action="/setting/boxes/boxes/display/5"', '/') . '.*?' . '>' .
+					preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
 						preg_quote('<div style="display:none;">', '/') .
 							preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 						preg_quote('</div>', '/') .

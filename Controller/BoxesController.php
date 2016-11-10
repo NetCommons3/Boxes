@@ -46,8 +46,7 @@ class BoxesController extends BoxesAppController {
 			__d('net_commons', 'Successfully saved.'), array('class' => 'success')
 		);
 		$this->redirect(
-			'/' . Current::SETTING_MODE_WORD .
-			'/' . Current::read('Page.permalink') .
+			NetCommonsUrl::backToPageUrl(true) .
 			'#/box-' . Hash::get($this->data, 'BoxesPageContainer.box_id')
 		);
 	}
