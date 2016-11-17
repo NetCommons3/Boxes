@@ -787,7 +787,7 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 			preg_quote('</div>', '/') .
 			preg_quote('<div class="panel panel-default box-panel" id="box-5">', '/') .
 				preg_quote('<div class="panel-heading cleafix">', '/') .
-					preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
+					preg_quote('<form action="/setting/boxes/boxes/display?page_id=1"', '/') . '.*?' . '>' .
 						preg_quote('<div style="display:none;">', '/') .
 							preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 						preg_quote('</div>', '/') .
@@ -885,7 +885,7 @@ class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
 			preg_quote('</div>', '/') .
 			preg_quote('<div class="panel panel-default box-panel" id="box-5">', '/') .
 				preg_quote('<div class="panel-heading cleafix">', '/') .
-					preg_quote('<form action="/setting/boxes/boxes/display"', '/') . '.*?' . '>' .
+					preg_quote('<form action="/setting/boxes/boxes/display?page_id=1"', '/') . '.*?' . '>' .
 						preg_quote('<div style="display:none;">', '/') .
 							preg_quote('<input type="hidden" name="_method" value="PUT"/>', '/') .
 						preg_quote('</div>', '/') .
