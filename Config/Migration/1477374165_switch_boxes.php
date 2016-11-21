@@ -69,7 +69,6 @@ class SwitchBoxes extends NetCommonsMigration {
 /**
  * サイト全体のルームIDを$this->recordsにセットする
  *
- * @param int $roomId ルームID
  * @return void
  */
 	private function __setWholeSiteRoomId() {
@@ -170,6 +169,7 @@ class SwitchBoxes extends NetCommonsMigration {
  *
  * @param string $direction Migration処理 (up or down)
  * @return bool
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 	private function __saveBoxes($direction) {
 		$Box = $this->generateModel('Box');

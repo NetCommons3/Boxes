@@ -9,9 +9,7 @@
  * @copyright Copyright 2014, NetCommons Project
  */
 
-App::uses('NetCommonsHelperTestCase', 'NetCommons.TestSuite');
-App::uses('Container', 'Containers.Model');
-App::uses('Current', 'NetCommons.Utility');
+App::uses('BoxesHelperTestCase', 'Boxes.TestSuite');
 
 /**
  * BoxesHelper::renderBoxes()のテスト
@@ -19,16 +17,7 @@ App::uses('Current', 'NetCommons.Utility');
  * @author Shohei Nakajima <nakajimashouhei@gmail.com>
  * @package NetCommons\Boxes\Test\Case\View\Helper\BoxesHelper
  */
-class BoxesHelperRenderBoxesTest extends NetCommonsHelperTestCase {
-
-/**
- * Fixtures
- *
- * @var array
- */
-	public $fixtures = array(
-		'plugin.roles.default_role_permission'
-	);
+class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 
 /**
  * Plugin name
