@@ -58,7 +58,7 @@ class BoxesSchema extends CakeSchema {
 		'room_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'page_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'container_type' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 4, 'unsigned' => false, 'comment' => 'コンテナータイプ.  1:Header, 2:Major, 3:Main, 4:Minor, 5:Footer'),
-		'weight' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'comment' => 'Display order.'),
+		'weight' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'comment' => 'ボックスの並び順'),
 		'created_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
