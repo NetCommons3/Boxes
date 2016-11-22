@@ -38,7 +38,7 @@ class Init extends CakeMigration {
 					'space_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 					'room_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 					'page_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
-					'weight' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'comment' => 'Display order.'),
+					'weight' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'comment' => '表示順序'),
 					'created_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 					'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 					'modified_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
