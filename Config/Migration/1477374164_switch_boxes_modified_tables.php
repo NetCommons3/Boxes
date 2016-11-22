@@ -42,7 +42,7 @@ class SwitchBoxesModifiedTables extends NetCommonsMigration {
 					'container_type' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 4, 'unsigned' => false, 'comment' => 'コンテナータイプ.  1:Header, 2:Major, 3:Main, 4:Minor, 5:Footer'),
 					'box_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'key' => 'index'),
 					'is_published' => array('type' => 'boolean', 'null' => true, 'default' => '1', 'comment' => 'ボックスの表示・非表示'),
-					'weight' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'comment' => 'Display order.'),
+					'weight' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'comment' => 'ボックスの並び順'),
 					'created_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 					'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 					'modified_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
