@@ -33,6 +33,7 @@ class BoxesHelperTestCase extends NetCommonsHelperTestCase {
 		'plugin.pages.box4pages',
 		'plugin.pages.boxes_page_container4pages',
 		'plugin.pages.frame4pages',
+		'plugin.pages.frames_language4pages',
 		'plugin.pages.pages_language4pages',
 		'plugin.pages.page_container4pages',
 		'plugin.pages.page4pages',
