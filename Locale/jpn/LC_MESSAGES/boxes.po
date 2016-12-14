@@ -15,51 +15,55 @@ msgstr ""
 "Language: ja\n"
 "X-Generator: Poedit 1.8.1\n"
 
-#: Boxes/View/Elements/render_boxes.ctp:25
-msgid "Add plugin"
-msgstr "プラグイン追加"
+#: Boxes/View/Helper/BoxesHelper.php:147
+msgid "Not found plugin."
+msgstr "プラグインが配置されていません。"
 
-#: Boxes/View/Elements/render_boxes.ctp:25
-msgid "Add plugin to header"
-msgstr "プラグイン追加(ヘッダー)"
-
-#: Boxes/View/Elements/render_boxes.ctp:31
-msgid "Add plugin to footer"
-msgstr "プラグイン追加(フッター)"
-
-#: Boxes/View/Elements/render_boxes.ctp:33
-msgid "Add plugin to center"
-msgstr "プラグイン追加(センター)"
-
-#: Boxes/View/Elements/render_boxes.ctp:33
-msgid "Common area of the whole site%s"
-msgstr "サイト全体で共通のエリア%s"
-
-#: Boxes/View/Elements/render_boxes.ctp:33
+#: Boxes/View/Helper/BoxesHelper.php:164
 msgid "(left column)"
 msgstr "(左)"
 
-#: Boxes/View/Elements/render_boxes.ctp:33
+#: Boxes/View/Helper/BoxesHelper.php:166
 msgid "(right column)"
 msgstr "(右)"
 
-#: Boxes/View/Elements/render_boxes.ctp:33
+#: Boxes/View/Helper/BoxesHelper.php:172
+msgid "Common area of the whole site%s"
+msgstr "サイト全体で共通のエリア%s"
+
+#: Boxes/View/Helper/BoxesHelper.php:174
 msgid "Common area of the whole %s space%s"
 msgstr "%s共通のエリア%s"
 
-#: Boxes/View/Elements/render_boxes.ctp:33
+#: Boxes/View/Helper/BoxesHelper.php:181
 msgid "Common area of the whole room%s"
 msgstr "ルーム共通のエリア%s"
 
-#: Boxes/View/Elements/render_boxes.ctp:33
+#: Boxes/View/Helper/BoxesHelper.php:183
 msgid "Area of this page only%s"
 msgstr "当ページのみのエリア%s"
 
+#: Boxes/View/Helper/BoxesHelper.php:267
 msgid "Display"
 msgstr "表示"
 
+#: Boxes/View/Helper/BoxesHelper.php:274
 msgid "Non display"
 msgstr "非表示"
 
-msgid "Not found plugin."
-msgstr "プラグインが配置されていません。"
+#: Frames/View/Elements/add_plugin.ctp:95
+msgid "Add plugin to header"
+msgstr "プラグイン追加(ヘッダー)"
+
+#: Frames/View/Elements/add_plugin.ctp:97
+msgid "Add plugin"
+msgstr "プラグイン追加"
+
+#: Frames/View/Elements/add_plugin.ctp:99
+msgid "Add plugin to footer"
+msgstr "プラグイン追加(フッター)"
+
+#: Frames/View/Elements/add_plugin.ctp:101
+msgid "Add plugin to center"
+msgstr "プラグイン追加(センター)"
+
