@@ -135,7 +135,6 @@ class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
 				),
 			),
 		);
-
 		$this->assertEquals($result, $expected);
 	}
 
