@@ -460,6 +460,7 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
  * renderBoxes()のHeaderテスト
  *
  * @return void
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 	public function testRenderBoxesForHeader() {
 		//データ生成
@@ -495,6 +496,9 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Page][room_id]"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Box][id]" value="1"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Box][type]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<div class="radio">', '/') .
 								preg_quote('<label class="control-label">', '/') .
 								preg_quote('<input type="radio" name="data[BoxesPageContainer][is_published]"', '/') . '.*?' . '>' .
@@ -520,6 +524,9 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Page][room_id]"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Box][id]" value="5"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Box][type]" value="2"', '/') . '.*?' . '>' .
 								preg_quote('<div class="radio">', '/') .
 								preg_quote('<label class="control-label">', '/') .
 								preg_quote('<input type="radio" name="data[BoxesPageContainer][is_published]"', '/') . '.*?' . '>' .
@@ -561,6 +568,7 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
  * renderBoxes()のFooterテスト
  *
  * @return void
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 	public function testRenderBoxesForFooter() {
 		//データ生成
@@ -596,6 +604,9 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="5"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Page][room_id]"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Box][id]" value="1"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Box][type]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<div class="radio">', '/') .
 								preg_quote('<label class="control-label">', '/') .
 								preg_quote('<input type="radio" name="data[BoxesPageContainer][is_published]"', '/') . '.*?' . '>' .
@@ -621,6 +632,9 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="5"', '/') . '.*?' . '>' .
 								preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Page][room_id]"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Box][id]" value="5"', '/') . '.*?' . '>' .
+								preg_quote('<input type="hidden" name="data[Box][type]" value="2"', '/') . '.*?' . '>' .
 								preg_quote('<div class="radio">', '/') .
 								preg_quote('<label class="control-label">', '/') .
 								preg_quote('<input type="radio" name="data[BoxesPageContainer][is_published]"', '/') . '.*?' . '>' .
@@ -741,6 +755,9 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="2"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Page][room_id]"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Box][id]" value="1"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Box][type]" value="1"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][is_published]" value="0"', '/') . '.*?' . '>' .
 						preg_quote('<button name="save" class="btn btn-xs btn-default active" ng-class="{disabled: sending}" type="submit">', '/') .
 							preg_quote('<span class="glyphicon glyphicon-eye-open" aria-hidden="true">', '/') .
@@ -786,6 +803,9 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="2"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Page][room_id]"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Box][id]" value="5"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Box][type]" value="2"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][is_published]" value="1"', '/') . '.*?' . '>' .
 						preg_quote('<button name="save" class="btn btn-xs btn-default" ng-class="{disabled: sending}" type="submit">', '/') .
 							preg_quote('<span class="glyphicon glyphicon-minus" aria-hidden="true">', '/') .
@@ -839,6 +859,9 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="4"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Page][room_id]"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Box][id]" value="1"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Box][type]" value="1"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][is_published]" value="0"', '/') . '.*?' . '>' .
 						preg_quote('<button name="save" class="btn btn-xs btn-default active" ng-class="{disabled: sending}" type="submit">', '/') .
 							preg_quote('<span class="glyphicon glyphicon-eye-open" aria-hidden="true">', '/') .
@@ -884,6 +907,9 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][page_id]" value="1"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][container_type]" value="4"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[Page][id]"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Page][room_id]"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Box][id]" value="5"', '/') . '.*?' . '>' .
+						preg_quote('<input type="hidden" name="data[Box][type]" value="2"', '/') . '.*?' . '>' .
 						preg_quote('<input type="hidden" name="data[BoxesPageContainer][is_published]" value="1"', '/') . '.*?' . '>' .
 						preg_quote('<button name="save" class="btn btn-xs btn-default" ng-class="{disabled: sending}" type="submit">', '/') .
 							preg_quote('<span class="glyphicon glyphicon-minus" aria-hidden="true">', '/') .

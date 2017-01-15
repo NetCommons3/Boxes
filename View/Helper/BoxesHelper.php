@@ -244,6 +244,15 @@ class BoxesHelper extends AppHelper {
 		$html .= $this->NetCommonsForm->hidden('Page.id', array(
 			'value' => Current::read('Page.id'),
 		));
+		$html .= $this->NetCommonsForm->hidden('Page.room_id', array(
+			'value' => Current::read('Page.room_id'),
+		));
+		$html .= $this->NetCommonsForm->hidden('Box.id', array(
+			'value' => $box['Box']['id'],
+		));
+		$html .= $this->NetCommonsForm->hidden('Box.type', array(
+			'value' => $box['Box']['type'],
+		));
 
 		if ($containerType === Container::TYPE_HEADER || $containerType === Container::TYPE_FOOTER) {
 			$html .= $this->NetCommonsForm->radio(

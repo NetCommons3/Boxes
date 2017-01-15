@@ -55,6 +55,14 @@ class BoxesPageContainerUpdateDisplayTest extends BoxesModelTestCase {
 					'box_id' => '5',
 					'is_published' => true,
 				),
+				'Box' => array(
+					'id' => '5',
+					'type' => '4',
+				),
+				'Page' => array(
+					'id' => '1',
+					'room_id' => '2',
+				),
 			),
 		);
 		$results[] = array(
@@ -67,6 +75,14 @@ class BoxesPageContainerUpdateDisplayTest extends BoxesModelTestCase {
 					'container_type' => '5',
 					'box_id' => '20',
 					'is_published' => true,
+				),
+				'Box' => array(
+					'id' => '20',
+					'type' => '4',
+				),
+				'Page' => array(
+					'id' => '1',
+					'room_id' => '2',
 				),
 			),
 		);
@@ -133,6 +149,14 @@ class BoxesPageContainerUpdateDisplayTest extends BoxesModelTestCase {
 					'box_id' => '8',
 					'is_published' => true,
 				),
+				'Box' => array(
+					'id' => '8',
+					'type' => '4',
+				),
+				'Page' => array(
+					'id' => '1',
+					'room_id' => '2',
+				),
 			),
 		);
 		$results[] = array(
@@ -145,6 +169,14 @@ class BoxesPageContainerUpdateDisplayTest extends BoxesModelTestCase {
 					'container_type' => '4',
 					'box_id' => '24',
 					'is_published' => true,
+				),
+				'Box' => array(
+					'id' => '24',
+					'type' => '4',
+				),
+				'Page' => array(
+					'id' => '1',
+					'room_id' => '2',
 				),
 			),
 		);
