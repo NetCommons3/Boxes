@@ -15,6 +15,7 @@
 
 App::uses('BoxesAppModel', 'Boxes.Model');
 App::uses('Container', 'Containers.Model');
+App::uses('Box', 'Boxes.Model');
 
 /**
  * BoxesPageContainer Model
@@ -117,6 +118,69 @@ class BoxesPageContainer extends BoxesAppModel {
 		//トランザクションBegin
 		$this->begin();
 
+		$containerType = $data[$this->alias]['container_type'];
+		$boxType = $data['Box']['type'];
+		$pageRoomdId = $data['Page']['room_id'];
+		$isPublished = $data[$this->alias]['is_published'];
+
+		if ($boxType !== Box::TYPE_WITH_PAGE &&
+				in_array($containerType, [Container::TYPE_HEADER, Container::TYPE_FOOTER], true)) {
+
+			$boxes = $this->find('all', array(
+				'recursive' => 0,
+				'conditions' => array(
+					'Page.room_id' => $pageRoomdId,
+					$this->alias . '.container_type' => $containerType,
+					'Box.type' => $boxType,
+				),
+			));
+
+			$boxesByPageType = $this->find('list', array(
+				'recursive' => 0,
+				'fields' => array(
+					$this->alias . '.id',
+					$this->alias . '.page_id'
+				),
+				'conditions' => array(
+					'Page.room_id' => $pageRoomdId,
+					$this->alias . '.container_type' => $containerType,
+					$this->alias . '.is_published' => true,
+					'Box.type' => Box::TYPE_WITH_PAGE,
+				),
+			));
+
+			foreach ($boxes as $box) {
+				if ($box[$this->alias]['is_published'] ||
+						in_array($box[$this->alias]['page_id'], $boxesByPageType, true)) {
+					continue;
+				}
+				$box[$this->alias]['is_published'] = $isPublished;
+				if (! $this->_updateDisplay($box)) {
+					return false;
+				}
+			}
+		} else {
+			if (! $this->_updateDisplay($data)) {
+				return false;
+			}
+		}
+
+		//トランザクションCommit
+		$this->commit();
+
+		return true;
+	}
+
+/**
+ * 表示・非表示の切り替え
+ *
+ * @param array $data リクエストデータ
+ * @return bool True on success
+ * @throws InternalErrorException
+ */
+	protected function _updateDisplay($data) {
+		$containerType = $data[$this->alias]['container_type'];
+
 		$this->id = $data[$this->alias]['id'];
 		if (! $this->exists()) {
 			return false;
@@ -130,11 +194,10 @@ class BoxesPageContainer extends BoxesAppModel {
 
 		try {
 			//BoxPageContainerテーブルの登録
-			if (! $this->saveField('is_published', $this->data[$this->alias]['is_published'], false)) {
+			if (! $this->saveField('is_published', $data[$this->alias]['is_published'], false)) {
 				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 			}
 
-			$containerType = $data[$this->alias]['container_type'];
 			if ($data[$this->alias]['is_published'] &&
 					in_array($containerType, [Container::TYPE_HEADER, Container::TYPE_FOOTER], true)) {
 				$update = array(
@@ -148,10 +211,6 @@ class BoxesPageContainer extends BoxesAppModel {
 					throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 				}
 			}
-
-			//トランザクションCommit
-			$this->commit();
-
 		} catch (Exception $ex) {
 			//トランザクションRollback
 			$this->rollback($ex);
