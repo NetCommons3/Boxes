@@ -39,10 +39,9 @@ class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
  * @return void
  */
 	public function testGetBoxWithFrame() {
+		//データ生成
 		$model = $this->_modelName;
 		$methodName = $this->_methodName;
-
-		//データ生成
 		$pageContainerId = '1';
 
 		//テスト実施
@@ -118,6 +117,7 @@ class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
 						'name' => 'Test frame header',
 						'is_origin' => true,
 						'is_translation' => false,
+						'is_original_copy' => false,
 						'room_id' => '2',
 						'box_id' => '1',
 						'plugin_key' => 'test_pages',
