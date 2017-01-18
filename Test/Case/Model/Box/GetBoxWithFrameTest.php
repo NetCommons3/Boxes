@@ -39,10 +39,9 @@ class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
  * @return void
  */
 	public function testGetBoxWithFrame() {
+		//データ生成
 		$model = $this->_modelName;
 		$methodName = $this->_methodName;
-
-		//データ生成
 		$pageContainerId = '1';
 
 		//テスト実施
