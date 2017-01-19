@@ -123,6 +123,10 @@ class BoxesPageContainer extends BoxesAppModel {
 		$pageRoomdId = $data['Page']['room_id'];
 		$isPublished = $data[$this->alias]['is_published'];
 
+		if (! $this->_updateDisplay($data)) {
+			return false;
+		}
+
 		if ($boxType !== Box::TYPE_WITH_PAGE &&
 				in_array($containerType, [Container::TYPE_HEADER, Container::TYPE_FOOTER], true)) {
 
@@ -158,10 +162,6 @@ class BoxesPageContainer extends BoxesAppModel {
 				if (! $this->_updateDisplay($box)) {
 					return false;
 				}
-			}
-		} else {
-			if (! $this->_updateDisplay($data)) {
-				return false;
 			}
 		}
 
