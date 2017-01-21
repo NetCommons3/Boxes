@@ -703,7 +703,7 @@ class BoxesHelperRenderBoxesTest extends BoxesHelperTestCase {
 				preg_quote('</span>プラグイン追加(センター)</button>', '/') .
 			preg_quote('</div>', '/') .
 			preg_quote('<div id="box-23">', '/') .
-				preg_quote('<section class="frame panel panel-default nc-content plugin-test-boxes">', '/') .
+				preg_quote('<section id="frame-1" class="frame panel panel-default nc-content plugin-test-boxes">', '/') .
 					preg_quote('<div class="panel-heading clearfix">', '/') .
 						preg_quote('<span>Test frame main</span>', '/') .
 						preg_quote('<div class="pull-right">', '/') .
