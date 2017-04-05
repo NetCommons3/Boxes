@@ -89,7 +89,6 @@ class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
 					'id' => '1',
 					'space_id' => '1',
 					'page_id_top' => null,
-					'root_id' => null,
 					'parent_id' => null,
 					'lft' => '1',
 					'rght' => '12',
