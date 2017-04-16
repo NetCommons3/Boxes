@@ -33,7 +33,7 @@ class BoxesPageContainerFixture extends CakeTestFixture {
  *
  * @var array
  */
-	public $_addedRecords = [];
+	protected $_addedRecords = [];
 
 /**
  * Boxデータ
