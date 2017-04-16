@@ -29,6 +29,13 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 	);
 
 /**
+ * Recordsをセットしたかどうかをチェックするためのもの
+ *
+ * @var array
+ */
+	protected $_addedRecords = [];
+
+/**
  * Boxデータ
  *
  * @var array
@@ -124,6 +131,7 @@ class BoxesPageContainerFixture extends CakeTestFixture {
  * @return void
  */
 	public function setRecord($spaceId, $roomId, $pageId, $containerTypes) {
+		$pathKey = $spaceId . '_' . $roomId . '_' . $pageId;
 		foreach ($containerTypes as $containerType) {
 			$result = $this->_pageContainers;
 			$result = Hash::extract($result, '{n}[page_id=' . $pageId . ']');
@@ -140,7 +148,7 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 				$result = Hash::extract($result, '{n}[type=1]');
 				$result = Hash::extract($result, '{n}[container_type=' . $containerType . ']');
 				$boxId = Hash::get($result, '0.id');
-				$this->__setRecord($pageContainerId, $boxId, $pageId, $containerType);
+				$this->__setRecord($pageContainerId, $boxId, $pageId, $containerType, $pathKey);
 
 				//スペース
 				$result = $this->_boxes;
@@ -148,7 +156,7 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 				$result = Hash::extract($result, '{n}[space_id=' . $spaceId . ']');
 				$result = Hash::extract($result, '{n}[container_type=' . $containerType . ']');
 				$boxId = Hash::get($result, '0.id');
-				$this->__setRecord($pageContainerId, $boxId, $pageId, $containerType);
+				$this->__setRecord($pageContainerId, $boxId, $pageId, $containerType, $pathKey);
 
 				//ルーム
 				$result = $this->_boxes;
@@ -157,7 +165,7 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 				$result = Hash::extract($result, '{n}[room_id=' . $roomId . ']');
 				$result = Hash::extract($result, '{n}[container_type=' . $containerType . ']');
 				$boxId = Hash::get($result, '0.id');
-				$this->__setRecord($pageContainerId, $boxId, $pageId, $containerType);
+				$this->__setRecord($pageContainerId, $boxId, $pageId, $containerType, $pathKey);
 			}
 			//ページ
 			$result = $this->_boxes;
@@ -167,7 +175,7 @@ class BoxesPageContainerFixture extends CakeTestFixture {
 			$result = Hash::extract($result, '{n}[page_id=' . $pageId . ']');
 			$result = Hash::extract($result, '{n}[container_type=' . $containerType . ']');
 			$boxId = Hash::get($result, '0.id');
-			$this->__setRecord($pageContainerId, $boxId, $pageId, $containerType);
+			$this->__setRecord($pageContainerId, $boxId, $pageId, $containerType, $pathKey);
 		}
 	}
 
@@ -178,12 +186,19 @@ class BoxesPageContainerFixture extends CakeTestFixture {
  * @param int $boxId ボックスID
  * @param int $pageId ページID
  * @param int $containerType コンテナータイプ
+ * @param string $pathKey パスKey
  * @return void
  */
-	private function __setRecord($pageContainerId, $boxId, $pageId, $containerType) {
+	private function __setRecord($pageContainerId, $boxId, $pageId, $containerType, $pathKey) {
 		if (! $boxId) {
 			return;
 		}
+
+		$pathKey .= '_' . $pageContainerId . '_' . $boxId . '_' . $containerType;
+		if (in_array($pathKey, $this->_addedRecords, true)) {
+			return;
+		}
+		$this->_addedRecords[] = $pathKey;
 
 		$this->_id++;
 		$this->_weight++;
