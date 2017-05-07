@@ -123,6 +123,8 @@ class Box extends BoxesAppModel {
 				),
 			)
 		), false);
+		$this->BoxesPageContainer->Room->useDbConfig = $this->BoxesPageContainer->useDbConfig;
+		$this->BoxesPageContainer->RoomsLanguage->useDbConfig = $this->BoxesPageContainer->useDbConfig;
 
 		$this->BoxesPageContainer->unbindModel(array(
 			'belongsTo' => array(
