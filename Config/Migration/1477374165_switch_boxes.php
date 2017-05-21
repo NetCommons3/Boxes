@@ -74,6 +74,7 @@ class SwitchBoxes extends NetCommonsMigration {
 	private function __setWholeSiteRoomId() {
 		$Room = $this->Room;
 
+		$Room->unbindModel(['belongsTo' => ['ParentRoom']]);
 		$this->wholeSiteSpace = $Room->find('first', array(
 			'recursive' => 0,
 			'conditions' => array('Room.space_id' => '1'),
@@ -96,7 +97,9 @@ class SwitchBoxes extends NetCommonsMigration {
  * @return bool Should process continue
  */
 	public function before($direction) {
-		$this->Room = ClassRegistry::init('Rooms.Room');
+		$this->loadModels([
+			'Room' => 'Rooms.Room',
+		]);
 
 		$this->__setWholeSiteRoomId();
 
