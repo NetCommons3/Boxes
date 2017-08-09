@@ -8,6 +8,8 @@
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
 
+App::uses('NetCommonsTestSuite', 'NetCommons.TestSuite');
+
 /**
  * Boxes All Test Suite
  *
@@ -15,15 +17,15 @@
  * @package NetCommons\NetCommons\Test\Case
  * @codeCoverageIgnore
  */
-class AllBoxesTest extends CakeTestSuite {
+class AllBoxesTest extends NetCommonsTestSuite {
 
 /**
  * Suite defines all the tests for Containers
  *
- * @return CakeTestSuite
+ * @return NetCommonsTestSuite
  */
 	public static function suite() {
-		$suite = new CakeTestSuite();
+		$suite = new NetCommonsTestSuite();
 		$suite->addTestDirectoryRecursive(dirname(__FILE__));
 		return $suite;
 	}
