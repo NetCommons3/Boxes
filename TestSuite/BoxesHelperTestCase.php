@@ -22,7 +22,7 @@ App::uses('Current', 'NetCommons.Utility');
  * @package NetCommons\Boxes\TestSuite
  * @codeCoverageIgnore
  */
-class BoxesHelperTestCase extends NetCommonsHelperTestCase {
+abstract class BoxesHelperTestCase extends NetCommonsHelperTestCase {
 
 /**
  * Fixtures
