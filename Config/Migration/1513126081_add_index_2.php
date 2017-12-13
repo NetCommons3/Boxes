@@ -39,7 +39,7 @@ class AddIndex2 extends CakeMigration {
 			'create_field' => array(
 				'boxes' => array(
 					'indexes' => array(
-						'type' => array('column' => array('type', 'room_id', 'container_type', 'id'), 'unique' => 0),
+						'type' => array('column' => array('room_id', 'container_type', 'type', 'id'), 'unique' => 0),
 					),
 				),
 			),
