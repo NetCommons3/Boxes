@@ -58,10 +58,6 @@ class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
 					'box_id' => '1',
 					'is_published' => true,
 					'weight' => '1',
-					'created_user' => null,
-					'created' => null,
-					'modified_user' => null,
-					'modified' => null,
 				),
 				'Box' => array(
 					'id' => '1',
@@ -72,18 +68,6 @@ class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
 					'page_id' => null,
 					'container_type' => '1',
 					'weight' => null,
-					'created_user' => null,
-					'created' => null,
-					'modified_user' => null,
-					'modified' => null,
-				),
-				'TrackableCreator' => array(
-					'id' => null,
-					'handlename' => null,
-				),
-				'TrackableUpdater' => array(
-					'id' => null,
-					'handlename' => null,
 				),
 				'Room' => array(
 					'id' => '1',
@@ -99,10 +83,6 @@ class BoxGetBoxWithFrameTest extends BoxesGetTestCase {
 					'default_participation' => true,
 					'page_layout_permitted' => false,
 					'theme' => null,
-					'created_user' => null,
-					'created' => null,
-					'modified_user' => null,
-					'modified' => null,
 				),
 				'RoomsLanguage' => array(
 					'id' => null,
