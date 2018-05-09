@@ -197,7 +197,10 @@ class Box extends BoxesAppModel {
 			$boxes[$i] = $box;
 		}
 
-		$this->__cacheBoxWithFrame[$pageContainerId] = $boxes;
+		if ($this->useDbConfig !== 'test') {
+			$this->__cacheBoxWithFrame[$pageContainerId] = $boxes;
+		}
+
 		return $boxes;
 	}
 
