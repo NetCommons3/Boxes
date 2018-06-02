@@ -73,10 +73,21 @@ class SwitchBoxes extends NetCommonsMigration {
  */
 	private function __setWholeSiteRoomId() {
 		$Room = $this->Room;
+		$Space = $this->generateModel('Space');
 
-		$Room->unbindModel(['belongsTo' => ['ParentRoom']]);
 		$this->wholeSiteSpace = $Room->find('first', array(
-			'recursive' => 0,
+			'recursive' => -1,
+			'fields' => '*',
+			'joins' => [
+				array(
+					'table' => $Space->table,
+					'alias' => $Space->alias,
+					'type' => 'INNER',
+					'conditions' => array(
+						$Room->alias . '.space_id' . ' = ' . $Space->alias . ' .id',
+					),
+				),
+			],
 			'conditions' => array('Room.space_id' => '1'),
 		));
 
@@ -97,9 +108,7 @@ class SwitchBoxes extends NetCommonsMigration {
  * @return bool Should process continue
  */
 	public function before($direction) {
-		$this->loadModels([
-			'Room' => 'Rooms.Room',
-		]);
+		$this->Room = $this->generateModel('Room');
 
 		$this->__setWholeSiteRoomId();
 
