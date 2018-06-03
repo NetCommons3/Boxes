@@ -48,7 +48,7 @@ class Box extends BoxesAppModel {
  *
  * @var bool
  */
-	private $__cacheBoxWithFrame = [];
+	private static $__memoryBoxWithFrame = [];
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -100,6 +100,7 @@ class Box extends BoxesAppModel {
  *
  * @param string $pageContainerId BoxesPageContainerのID
  * @return array
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 	public function getBoxWithFrame($pageContainerId) {
 		$this->loadModels([
@@ -109,8 +110,8 @@ class Box extends BoxesAppModel {
 			'RoomsLanguage' => 'Rooms.RoomsLanguage',
 		]);
 
-		if (isset($this->__cacheBoxWithFrame[$pageContainerId])) {
-			return $this->__cacheBoxWithFrame[$pageContainerId];
+		if (isset(self::$__memoryBoxWithFrame[$pageContainerId])) {
+			return self::$__memoryBoxWithFrame[$pageContainerId];
 		}
 
 		$this->BoxesPageContainer->unbindModel(array(
@@ -198,7 +199,7 @@ class Box extends BoxesAppModel {
 		}
 
 		if ($this->useDbConfig !== 'test') {
-			$this->__cacheBoxWithFrame[$pageContainerId] = $boxes;
+			self::$__memoryBoxWithFrame[$pageContainerId] = $boxes;
 		}
 
 		return $boxes;
