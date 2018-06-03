@@ -181,6 +181,7 @@ class Box extends BoxesAppModel {
 					'table' => $this->RoomsLanguage->table,
 					'alias' => $this->RoomsLanguage->alias,
 					'conditions' => [
+						'RoomsLanguage.language_id' => Current::read('Language.id', '2'),
 						$this->Room->alias . '.id' . '=' .
 										$this->RoomsLanguage->alias . '.room_id',
 					],
