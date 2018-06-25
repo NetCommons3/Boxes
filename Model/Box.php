@@ -43,6 +43,13 @@ class Box extends BoxesAppModel {
  */
 	const TYPE_WITH_PAGE = '4';
 
+/**
+ * ページで共通のものであれば、取得しないようにキャッシュする
+ *
+ * @var bool
+ */
+	private static $__memoryBoxWithFrame = [];
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
@@ -93,38 +100,19 @@ class Box extends BoxesAppModel {
  *
  * @param string $pageContainerId BoxesPageContainerのID
  * @return array
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 	public function getBoxWithFrame($pageContainerId) {
 		$this->loadModels([
 			'BoxesPageContainer' => 'Boxes.BoxesPageContainer',
 			'Frame' => 'Frames.Frame',
+			'Room' => 'Rooms.Room',
+			'RoomsLanguage' => 'Rooms.RoomsLanguage',
 		]);
 
-		$this->BoxesPageContainer->bindModel(array(
-			'belongsTo' => array(
-				'Room' => array(
-					'className' => 'Rooms.Room',
-					//'fields' => array('id', 'name'),
-					'foreignKey' => false,
-					'type' => 'LEFT',
-					'conditions' => array(
-						'Room.id' . ' = ' . 'Box.room_id',
-					),
-				),
-				'RoomsLanguage' => array(
-					'className' => 'Rooms.RoomsLanguage',
-					'fields' => array('id', 'name'),
-					'foreignKey' => false,
-					'type' => 'LEFT',
-					'conditions' => array(
-						'RoomsLanguage.room_id' . ' = ' . 'Box.room_id',
-						'RoomsLanguage.language_id' => Current::read('Language.id', '0'),
-					),
-				),
-			)
-		), false);
-		$this->BoxesPageContainer->Room->useDbConfig = $this->BoxesPageContainer->useDbConfig;
-		$this->BoxesPageContainer->RoomsLanguage->useDbConfig = $this->BoxesPageContainer->useDbConfig;
+		if (isset(self::$__memoryBoxWithFrame[$pageContainerId])) {
+			return self::$__memoryBoxWithFrame[$pageContainerId];
+		}
 
 		$this->BoxesPageContainer->unbindModel(array(
 			'belongsTo' => array(
@@ -133,10 +121,72 @@ class Box extends BoxesAppModel {
 		), true);
 
 		$query = array(
-			'recursive' => 0,
+			'recursive' => -1,
+			'fields' => [
+				$this->BoxesPageContainer->alias . '.id',
+				$this->BoxesPageContainer->alias . '.page_container_id',
+				$this->BoxesPageContainer->alias . '.page_id',
+				$this->BoxesPageContainer->alias . '.container_type',
+				$this->BoxesPageContainer->alias . '.box_id',
+				$this->BoxesPageContainer->alias . '.is_published',
+				$this->BoxesPageContainer->alias . '.weight',
+				$this->BoxesPageContainer->Box->alias . '.id',
+				$this->BoxesPageContainer->Box->alias . '.container_id',
+				$this->BoxesPageContainer->Box->alias . '.type',
+				$this->BoxesPageContainer->Box->alias . '.space_id',
+				$this->BoxesPageContainer->Box->alias . '.room_id',
+				$this->BoxesPageContainer->Box->alias . '.page_id',
+				$this->BoxesPageContainer->Box->alias . '.container_type',
+				$this->BoxesPageContainer->Box->alias . '.weight',
+				$this->Room->alias . '.id',
+				$this->Room->alias . '.space_id',
+				$this->Room->alias . '.page_id_top',
+				$this->Room->alias . '.parent_id',
+				$this->Room->alias . '.lft',
+				$this->Room->alias . '.rght',
+				$this->Room->alias . '.active',
+				$this->Room->alias . '.in_draft',
+				$this->Room->alias . '.default_role_key',
+				$this->Room->alias . '.need_approval',
+				$this->Room->alias . '.default_participation',
+				$this->Room->alias . '.page_layout_permitted',
+				$this->Room->alias . '.theme',
+				$this->RoomsLanguage->alias . '.id',
+				$this->RoomsLanguage->alias . '.name',
+			],
 			'conditions' => array(
 				$this->BoxesPageContainer->alias . '.page_container_id' => $pageContainerId,
 			),
+			'joins' => [
+				[
+					'type' => 'INNER',
+					'table' => $this->BoxesPageContainer->Box->table,
+					'alias' => $this->BoxesPageContainer->Box->alias,
+					'conditions' => [
+						$this->BoxesPageContainer->Box->alias . '.id' . '=' .
+										$this->BoxesPageContainer->alias . '.box_id',
+					],
+				],
+				[
+					'type' => 'INNER',
+					'table' => $this->Room->table,
+					'alias' => $this->Room->alias,
+					'conditions' => [
+						$this->BoxesPageContainer->Box->alias . '.room_id' . '=' .
+										$this->Room->alias . '.id',
+					],
+				],
+				[
+					'type' => 'LEFT',
+					'table' => $this->RoomsLanguage->table,
+					'alias' => $this->RoomsLanguage->alias,
+					'conditions' => [
+						'RoomsLanguage.language_id' => Current::read('Language.id', '2'),
+						$this->Room->alias . '.id' . '=' .
+										$this->RoomsLanguage->alias . '.room_id',
+					],
+				],
+			],
 			'order' => $this->BoxesPageContainer->alias . '.weight',
 		);
 		if (! Current::isSettingMode()) {
@@ -147,6 +197,10 @@ class Box extends BoxesAppModel {
 		foreach ($boxes as $i => $box) {
 			$box['Frame'] = $this->Frame->getFrameByBox($box['Box']['id']);
 			$boxes[$i] = $box;
+		}
+
+		if ($this->useDbConfig !== 'test') {
+			self::$__memoryBoxWithFrame[$pageContainerId] = $boxes;
 		}
 
 		return $boxes;

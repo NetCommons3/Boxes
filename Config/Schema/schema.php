@@ -55,8 +55,8 @@ class BoxesSchema extends CakeSchema {
 		'container_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'type' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'comment' => 'ボックスタイプ 1:サイト全体, 2:スペース, 3:ルーム, 4:ページ'),
 		'space_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
-		'room_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
-		'page_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'room_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'key' => 'index'),
+		'page_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'key' => 'index'),
 		'container_type' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 4, 'unsigned' => false, 'comment' => 'コンテナータイプ.  1:Header, 2:Major, 3:Main, 4:Minor, 5:Footer'),
 		'weight' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'comment' => '表示順序'),
 		'created_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
@@ -65,29 +65,8 @@ class BoxesSchema extends CakeSchema {
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'type' => array('column' => array('room_id', 'container_type', 'type', 'id'), 'unique' => 0)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-	);
-
-/**
- * boxes_pages table
- *
- * @var array
- */
-	public $boxes_pages = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-		'page_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'key' => 'index'),
-		'box_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'key' => 'index'),
-		'is_published' => array('type' => 'boolean', 'null' => true, 'default' => null, 'comment' => 'ボックスの表示・非表示'),
-		'created_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'modified_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'page_id' => array('column' => 'page_id', 'unique' => 0),
-			'box_id' => array('column' => 'box_id', 'unique' => 0)
+			'type' => array('column' => array('room_id', 'container_type', 'type', 'id'), 'unique' => 0),
+			'page_id' => array('column' => 'page_id', 'unique' => 0)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
@@ -113,6 +92,28 @@ class BoxesSchema extends CakeSchema {
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'page_container_id' => array('column' => 'page_container_id', 'unique' => 0),
 			'page_id' => array('column' => array('page_id', 'container_type'), 'unique' => 0),
+			'box_id' => array('column' => 'box_id', 'unique' => 0)
+		),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
+	);
+
+/**
+ * boxes_pages table
+ *
+ * @var array
+ */
+	public $boxes_pages = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'page_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'key' => 'index'),
+		'box_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'key' => 'index'),
+		'is_published' => array('type' => 'boolean', 'null' => true, 'default' => null, 'comment' => 'ボックスの表示・非表示'),
+		'created_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'modified_user' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1),
+			'page_id' => array('column' => 'page_id', 'unique' => 0),
 			'box_id' => array('column' => 'box_id', 'unique' => 0)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')

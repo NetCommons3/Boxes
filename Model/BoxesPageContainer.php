@@ -34,22 +34,32 @@ class BoxesPageContainer extends BoxesAppModel {
 		'PageContainer' => array(
 			'className' => 'Pages.PageContainer',
 			'foreignKey' => 'page_container_id',
+			'type' => 'INNER',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => [
+				'id', 'page_id', 'container_type', 'is_published', 'is_configured',
+			],
 			'order' => ''
 		),
 		'Page' => array(
 			'className' => 'Pages.Page',
 			'foreignKey' => 'page_id',
+			'type' => 'INNER',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => [
+				'id', 'room_id', 'root_id', 'parent_id', 'lft', 'rght',
+				'permalink', 'slug', 'is_container_fluid', 'theme',
+			],
 			'order' => ''
 		),
 		'Box' => array(
 			'className' => 'Boxes.Box',
 			'foreignKey' => 'box_id',
+			'type' => 'INNER',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => [
+				'id', 'container_id', 'type', 'space_id', 'room_id', 'page_id', 'container_type', 'weight',
+			],
 			'order' => ''
 		)
 	);
