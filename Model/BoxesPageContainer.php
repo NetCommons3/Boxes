@@ -47,7 +47,9 @@ class BoxesPageContainer extends BoxesAppModel {
 			'type' => 'INNER',
 			'conditions' => '',
 			'fields' => [
-				'id', 'room_id', 'root_id', 'parent_id', 'lft', 'rght',
+				'id', 'room_id', 'root_id', 'parent_id',
+				//'lft', 'rght',
+				'weight', 'sort_key', 'child_count',
 				'permalink', 'slug', 'is_container_fluid', 'theme',
 			],
 			'order' => ''
