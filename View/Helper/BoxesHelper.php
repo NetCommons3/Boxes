@@ -157,6 +157,8 @@ class BoxesHelper extends AppHelper {
  * @return string
  */
 	public function boxTitle($box) {
+		App::uses('Box', 'Boxes.Model');
+
 		$html = '';
 
 		$containerType = $box['BoxesPageContainer']['container_type'];
