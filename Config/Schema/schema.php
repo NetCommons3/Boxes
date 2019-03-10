@@ -92,6 +92,7 @@ class BoxesSchema extends CakeSchema {
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'page_container_id' => array('column' => 'page_container_id', 'unique' => 0),
 			'page_id' => array('column' => array('page_id', 'container_type'), 'unique' => 0),
+			'page_container_id' => array('column' => array('page_container_id', 'is_published', 'box_id', 'weight'), 'unique' => 0),
 			'box_id' => array('column' => 'box_id', 'unique' => 0)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
