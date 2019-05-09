@@ -76,7 +76,7 @@ class BoxesPageContainer extends BoxesAppModel {
  * @see Model::save()
  */
 	public function beforeValidate($options = array()) {
-		$this->validate = Hash::merge($this->validate, array(
+		$this->validate = ValidateMerge::merge($this->validate, array(
 			'page_container_id' => array(
 				'numeric' => array(
 					'rule' => array('numeric'),
