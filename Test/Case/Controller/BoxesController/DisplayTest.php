@@ -97,7 +97,7 @@ class BoxesControllerDisplayTest extends NetCommonsControllerTestCase {
 		$this->_mockForReturnTrue('Boxes.BoxesPageContainer', 'updateDisplay');
 
 		//テスト実行
-		$this->_testPostAction('put', $data, array('action' => 'display', '1'), null, 'view');
+		$this->_testPostAction('put', $data, array('action' => 'display'), null, 'view');
 
 		//チェック
 		$header = $this->controller->response->header();
@@ -123,7 +123,7 @@ class BoxesControllerDisplayTest extends NetCommonsControllerTestCase {
 		$this->_mockForReturnFalse('Boxes.BoxesPageContainer', 'updateDisplay');
 
 		//テスト実行
-		$this->_testPostAction('put', $data, array('action' => 'display', '1'), 'BadRequestException', 'view');
+		$this->_testPostAction('put', $data, array('action' => 'display'), 'BadRequestException', 'view');
 	}
 
 }
