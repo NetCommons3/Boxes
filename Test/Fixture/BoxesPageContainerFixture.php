@@ -12,7 +12,7 @@
 App::uses('BoxFixture', 'Boxes.Test/Fixture');
 App::uses('PageContainerFixture', 'Pages.Test/Fixture');
 App::uses('Space', 'Pages.Model');
-App::uses('Room', 'Pages.Model');
+App::uses('Room', 'Rooms.Model');
 
 /**
  * Summary for BoxesPageContainerFixture
