@@ -88,6 +88,7 @@ class RepaireBoxesForPrivatePages extends NetCommonsMigration {
 			'Box.modified' => "'" . gmdate('Y-m-d H:i:s') . "'"
 		];
 
+		$this->Box->Room->useDbConfig = $this->Box->useDbConfig;
 		return $this->Box->updateAll($update, $conditions);
 	}
 }
