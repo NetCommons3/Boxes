@@ -307,7 +307,11 @@ class BoxesHelper extends AppHelper {
  * @return bool
  */
 	public function hasBoxSetting($box) {
-		$containerType = $box['BoxesPageContainer']['container_type'];
+		if (isset($box['BoxesPageContainer']['container_type'])) {
+			$containerType = $box['BoxesPageContainer']['container_type'];
+		} else {
+			$containerType = null;
+		}
 		if (! Current::isSettingMode()) {
 			return false;
 		} elseif ($containerType === Container::TYPE_MAJOR || $containerType === Container::TYPE_MINOR) {
