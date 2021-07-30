@@ -1,9 +1,6 @@
 Boxes
 =====
 
-[![Build Status](https://travis-ci.org/NetCommons3/Boxes.svg)](https://travis-ci.org/NetCommons3/Boxes)
-[![Coverage Status](https://coveralls.io/repos/NetCommons3/Boxes/badge.png)](https://coveralls.io/r/NetCommons3/Boxes)
-
-| dependencies | status |
-| ------------ | ------ |
-| composer.json | [![Dependency Status](https://www.versioneye.com/user/projects/536c74bd14c1583234000004/badge.png)](https://www.versioneye.com/user/projects/536c74bd14c1583234000004)
+[![Tests Status](https://github.com/NetCommons3/Boxes/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/NetCommons3/Boxes/actions/workflows/tests.yml)
+[![Coverage Status](https://coveralls.io/repos/NetCommons3/Boxes/badge.svg?branch=master)](https://coveralls.io/r/NetCommons3/Boxes?branch=master)
+[![Stable Version](https://img.shields.io/packagist/v/netcommons/boxes.svg?label=stable)](https://packagist.org/packages/netcommons/boxes)
