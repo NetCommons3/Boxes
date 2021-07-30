@@ -206,7 +206,9 @@ class BoxesPageContainer extends BoxesAppModel {
 
 		try {
 			//BoxPageContainerテーブルの登録
-			if (! $this->saveField('is_published', $data[$this->alias]['is_published'], false)) {
+			if (! $this->saveField('is_published', $data[$this->alias]['is_published'], [
+				'callbacks' => false
+			])) {
 				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 			}
 
